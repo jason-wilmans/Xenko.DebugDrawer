@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Implementation.Windows", "I
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Implementation.Game", "Implementation\Implementation.Game\Implementation.Game.csproj", "{BC891625-66DA-4D93-88BD-37E98A682E3D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xenko.DebugDrawing", "Implementation\Xenko.DebugDrawing\Xenko.DebugDrawing.csproj", "{44FCE144-2185-4213-8216-431D2625A449}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		AppStore|Any CPU = AppStore|Any CPU
@@ -124,6 +126,42 @@ Global
 		{BC891625-66DA-4D93-88BD-37E98A682E3D}.Testing|Mixed Platforms.Build.0 = Testing|Any CPU
 		{BC891625-66DA-4D93-88BD-37E98A682E3D}.Testing|Windows.ActiveCfg = Testing|Any CPU
 		{BC891625-66DA-4D93-88BD-37E98A682E3D}.Testing|Windows.Build.0 = Testing|Any CPU
+		{44FCE144-2185-4213-8216-431D2625A449}.AppStore|Any CPU.ActiveCfg = AppStore|Any CPU
+		{44FCE144-2185-4213-8216-431D2625A449}.AppStore|Any CPU.Build.0 = AppStore|Any CPU
+		{44FCE144-2185-4213-8216-431D2625A449}.AppStore|Mixed Platforms.ActiveCfg = AppStore|Any CPU
+		{44FCE144-2185-4213-8216-431D2625A449}.AppStore|Mixed Platforms.Build.0 = AppStore|Any CPU
+		{44FCE144-2185-4213-8216-431D2625A449}.AppStore|Windows.ActiveCfg = AppStore|Any CPU
+		{44FCE144-2185-4213-8216-431D2625A449}.AppStore|Windows.Build.0 = AppStore|Any CPU
+		{44FCE144-2185-4213-8216-431D2625A449}.CoreCLR_Debug|Any CPU.ActiveCfg = CoreCLR_Debug|Any CPU
+		{44FCE144-2185-4213-8216-431D2625A449}.CoreCLR_Debug|Any CPU.Build.0 = CoreCLR_Debug|Any CPU
+		{44FCE144-2185-4213-8216-431D2625A449}.CoreCLR_Debug|Mixed Platforms.ActiveCfg = CoreCLR_Debug|Any CPU
+		{44FCE144-2185-4213-8216-431D2625A449}.CoreCLR_Debug|Mixed Platforms.Build.0 = CoreCLR_Debug|Any CPU
+		{44FCE144-2185-4213-8216-431D2625A449}.CoreCLR_Debug|Windows.ActiveCfg = CoreCLR_Debug|Any CPU
+		{44FCE144-2185-4213-8216-431D2625A449}.CoreCLR_Debug|Windows.Build.0 = CoreCLR_Debug|Any CPU
+		{44FCE144-2185-4213-8216-431D2625A449}.CoreCLR_Release|Any CPU.ActiveCfg = CoreCLR_Release|Any CPU
+		{44FCE144-2185-4213-8216-431D2625A449}.CoreCLR_Release|Any CPU.Build.0 = CoreCLR_Release|Any CPU
+		{44FCE144-2185-4213-8216-431D2625A449}.CoreCLR_Release|Mixed Platforms.ActiveCfg = CoreCLR_Release|Any CPU
+		{44FCE144-2185-4213-8216-431D2625A449}.CoreCLR_Release|Mixed Platforms.Build.0 = CoreCLR_Release|Any CPU
+		{44FCE144-2185-4213-8216-431D2625A449}.CoreCLR_Release|Windows.ActiveCfg = CoreCLR_Release|Any CPU
+		{44FCE144-2185-4213-8216-431D2625A449}.CoreCLR_Release|Windows.Build.0 = CoreCLR_Release|Any CPU
+		{44FCE144-2185-4213-8216-431D2625A449}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44FCE144-2185-4213-8216-431D2625A449}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44FCE144-2185-4213-8216-431D2625A449}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{44FCE144-2185-4213-8216-431D2625A449}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{44FCE144-2185-4213-8216-431D2625A449}.Debug|Windows.ActiveCfg = Debug|Any CPU
+		{44FCE144-2185-4213-8216-431D2625A449}.Debug|Windows.Build.0 = Debug|Any CPU
+		{44FCE144-2185-4213-8216-431D2625A449}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44FCE144-2185-4213-8216-431D2625A449}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44FCE144-2185-4213-8216-431D2625A449}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{44FCE144-2185-4213-8216-431D2625A449}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{44FCE144-2185-4213-8216-431D2625A449}.Release|Windows.ActiveCfg = Release|Any CPU
+		{44FCE144-2185-4213-8216-431D2625A449}.Release|Windows.Build.0 = Release|Any CPU
+		{44FCE144-2185-4213-8216-431D2625A449}.Testing|Any CPU.ActiveCfg = Testing|Any CPU
+		{44FCE144-2185-4213-8216-431D2625A449}.Testing|Any CPU.Build.0 = Testing|Any CPU
+		{44FCE144-2185-4213-8216-431D2625A449}.Testing|Mixed Platforms.ActiveCfg = Testing|Any CPU
+		{44FCE144-2185-4213-8216-431D2625A449}.Testing|Mixed Platforms.Build.0 = Testing|Any CPU
+		{44FCE144-2185-4213-8216-431D2625A449}.Testing|Windows.ActiveCfg = Testing|Any CPU
+		{44FCE144-2185-4213-8216-431D2625A449}.Testing|Windows.Build.0 = Testing|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -131,6 +169,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{5E4D6435-77BF-42FF-A7A0-2B87B395674C} = {2CBBE532-3D56-48E3-9187-E115EBFE82DA}
 		{BC891625-66DA-4D93-88BD-37E98A682E3D} = {2CBBE532-3D56-48E3-9187-E115EBFE82DA}
+		{44FCE144-2185-4213-8216-431D2625A449} = {2CBBE532-3D56-48E3-9187-E115EBFE82DA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0EE351E9-0EFF-4A92-88C6-7CAD69E257C8}

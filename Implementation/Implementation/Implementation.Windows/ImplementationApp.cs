@@ -1,3 +1,4 @@
+using DebugDrawing;
 using SiliconStudio.Xenko.Engine;
 
 namespace Implementation
@@ -8,7 +9,7 @@ namespace Implementation
         {
             using (var game = new Game())
             {
-
+                game.Services.AddService(new DebugDrawer(game));
                 game.Run();
             }
         }
