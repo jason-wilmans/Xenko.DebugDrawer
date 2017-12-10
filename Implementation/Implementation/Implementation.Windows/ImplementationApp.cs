@@ -1,5 +1,6 @@
 using DebugDrawing;
 using SiliconStudio.Xenko.Engine;
+using SiliconStudio.Xenko.Rendering.Compositing;
 
 namespace Implementation
 {
@@ -9,7 +10,7 @@ namespace Implementation
         {
             using (var game = new Game())
             {
-                game.Services.AddService(new DebugDrawer(game));
+                game.GameSystems.Add(new DebugDrawer(game));
                 game.Run();
             }
         }
