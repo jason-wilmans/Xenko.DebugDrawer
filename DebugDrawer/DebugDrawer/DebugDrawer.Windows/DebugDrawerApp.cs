@@ -1,16 +1,14 @@
-using DebugDrawing;
 using SiliconStudio.Xenko.Engine;
-using SiliconStudio.Xenko.Rendering.Compositing;
 
-namespace Implementation
+namespace DebugDrawer
 {
-    class ImplementationApp
+    class DebugDrawerApp
     {
         static void Main(string[] args)
         {
             using (var game = new Game())
             {
-                //game.GameSystems.Add(new DebugDrawer(game));
+                game.GameSystems.Add(new DebugDrawerSystem(game));
                 game.Run();
             }
         }

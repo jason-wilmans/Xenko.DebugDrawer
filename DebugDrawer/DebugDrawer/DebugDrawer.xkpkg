@@ -1,0 +1,41 @@
+!Package
+Id: 9410b557-86a7-4603-89ee-9ea0fd6ea9f9
+SerializedVersion: {Assets: 0.0.4}
+Meta:
+    Name: DebugDrawer
+    Version: 1.0.0.0
+    Authors: []
+    Owners: []
+    RootNamespace: DebugDrawer
+    Dependencies:
+        -   Name: Xenko
+            Version: 2.1.1.1
+            RootAssets: []
+LocalDependencies: []
+Profiles:
+    -   Name: Shared
+        Platform: Shared
+        InheritProfiles: []
+        AssetFolders:
+            -   Path: Assets/Shared
+            -   Path: DebugDrawer.Game/Effects
+        OutputGroupDirectories: {}
+        ProjectReferences:
+            -   Id: 6bdab04c-b032-48ad-a587-7a7f4c0971f8
+                Location: DebugDrawer.Game/DebugDrawer.Game.csproj
+                Type: Library
+    -   Name: Windows
+        Platform: Windows
+        InheritProfiles: []
+        AssetFolders:
+            -   Path: Assets/Windows
+        OutputGroupDirectories: {}
+        ProjectReferences:
+            -   Id: 65979474-0507-4b4c-90b0-deae60a740f3
+                Location: DebugDrawer.Windows/DebugDrawer.Windows.csproj
+                Type: Executable
+ExplicitFolders: []
+Bundles: []
+TemplateFolders: []
+RootAssets:
+    - 6f8baac0-bad1-468a-8ac3-36fe118d3a4d:DebugMaterial

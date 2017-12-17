@@ -1,30 +1,33 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{44FCE144-2185-4213-8216-431D2625A449}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{65979474-0507-4B4C-90B0-DEAE60A740F3}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DebugDrawing</RootNamespace>
-    <AssemblyName>Xenko.DebugDrawing</AssemblyName>
-    <DefaultLanguage>en-US</DefaultLanguage>
+    <RootNamespace>DebugDrawer</RootNamespace>
+    <AssemblyName>DebugDrawer</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
-    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
     <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
+    <SiliconStudioPackageGuid>{9410b557-86a7-4603-89ee-9ea0fd6ea9f9}</SiliconStudioPackageGuid>
+    <!-- Force msbuild to check to rebuild this assembly instead of letting VS IDE guess -->
+    <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SiliconStudioCurrentPackagePath>$(MSBuildThisFileDirectory)..\DebugDrawer.xkpkg</SiliconStudioCurrentPackagePath>
+    <SiliconStudioPackageProps>$([System.IO.Path]::ChangeExtension('$(SiliconStudioCurrentPackagePath)', '.props'))</SiliconStudioPackageProps>
+    <SiliconStudioProjectType>Executable</SiliconStudioProjectType>
+    <SiliconStudioPlatform>Windows</SiliconStudioPlatform>
+    <SiliconStudioBuildProfile>Windows</SiliconStudioBuildProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <DefineConstants>DEBUG;TRACE;SILICONSTUDIO_PLATFORM_WINDOWS;SILICONSTUDIO_PLATFORM_WINDOWS_DESKTOP</DefineConstants>
-    <SiliconStudioPlatform>Windows</SiliconStudioPlatform>
-    <SiliconStudioBuildProfile>Windows</SiliconStudioBuildProfile>
     <OutputPath>..\Bin\Windows\Debug\</OutputPath>
     <IntermediateOutputPath>obj\Windows\Debug\</IntermediateOutputPath>
     <ErrorReport>prompt</ErrorReport>
@@ -35,8 +38,6 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <DefineConstants>TRACE;SILICONSTUDIO_PLATFORM_WINDOWS;SILICONSTUDIO_PLATFORM_WINDOWS_DESKTOP</DefineConstants>
-    <SiliconStudioPlatform>Windows</SiliconStudioPlatform>
-    <SiliconStudioBuildProfile>Windows</SiliconStudioBuildProfile>
     <OutputPath>..\Bin\Windows\Release\</OutputPath>
     <IntermediateOutputPath>obj\Windows\Release\</IntermediateOutputPath>
     <ErrorReport>prompt</ErrorReport>
@@ -47,8 +48,6 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <DefineConstants>TRACE;SILICONSTUDIO_PLATFORM_WINDOWS;SILICONSTUDIO_PLATFORM_WINDOWS_DESKTOP</DefineConstants>
-    <SiliconStudioPlatform>Windows</SiliconStudioPlatform>
-    <SiliconStudioBuildProfile>Windows</SiliconStudioBuildProfile>
     <OutputPath>..\Bin\Windows\Testing\</OutputPath>
     <IntermediateOutputPath>obj\Windows\Testing\</IntermediateOutputPath>
     <ErrorReport>prompt</ErrorReport>
@@ -59,8 +58,6 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <DefineConstants>TRACE;SILICONSTUDIO_PLATFORM_WINDOWS;SILICONSTUDIO_PLATFORM_WINDOWS_DESKTOP</DefineConstants>
-    <SiliconStudioPlatform>Windows</SiliconStudioPlatform>
-    <SiliconStudioBuildProfile>Windows</SiliconStudioBuildProfile>
     <OutputPath>..\Bin\Windows\AppStore\</OutputPath>
     <IntermediateOutputPath>obj\Windows\AppStore\</IntermediateOutputPath>
     <ErrorReport>prompt</ErrorReport>
@@ -72,8 +69,6 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <DefineConstants>DEBUG;TRACE;SILICONSTUDIO_PLATFORM_WINDOWS;SILICONSTUDIO_PLATFORM_WINDOWS_DESKTOP</DefineConstants>
-    <SiliconStudioPlatform>Windows</SiliconStudioPlatform>
-    <SiliconStudioBuildProfile>Windows</SiliconStudioBuildProfile>
     <OutputPath>..\Bin\Windows\CoreCLR_Debug\</OutputPath>
     <IntermediateOutputPath>obj\Windows\CoreCLR_Debug\</IntermediateOutputPath>
     <ErrorReport>prompt</ErrorReport>
@@ -87,8 +82,6 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <DefineConstants>TRACE;SILICONSTUDIO_PLATFORM_WINDOWS;SILICONSTUDIO_PLATFORM_WINDOWS_DESKTOP</DefineConstants>
-    <SiliconStudioPlatform>Windows</SiliconStudioPlatform>
-    <SiliconStudioBuildProfile>Windows</SiliconStudioBuildProfile>
     <OutputPath>..\Bin\Windows\CoreCLR_Release\</OutputPath>
     <IntermediateOutputPath>obj\Windows\CoreCLR_Release\</IntermediateOutputPath>
     <ErrorReport>prompt</ErrorReport>
@@ -98,43 +91,31 @@
     <SiliconStudioBuildDirExtension Condition="'$(SiliconStudioBuildDirExtension)' == ''">CoreCLR</SiliconStudioBuildDirExtension>
     <DefineConstants>SILICONSTUDIO_RUNTIME_CORECLR;$(DefineConstants)</DefineConstants>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\Icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
-    <!-- A reference to the entire .NET Framework is automatically included -->
+    <Reference Condition="'$(SiliconStudioRuntime)' == ''" Include="System" />
+    <Reference Condition="'$(SiliconStudioRuntime)' == ''" Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DebugDrawer.Game\DebugDrawer.Game.csproj">
+      <Project>{6bdab04c-b032-48ad-a587-7a7f4c0971f8}</Project>
+      <Name>DebugDrawer.Game</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <None Include="project.json" />
-    <None Include="Shaders\DebugEffect.xkfx">
-      <Generator>XenkoShaderKeyGenerator</Generator>
-      <LastGenOutput>DebugEffect.cs</LastGenOutput>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Shaders\Default.xksl">
-      <Generator>XenkoShaderKeyGenerator</Generator>
-      <LastGenOutput>Default.cs</LastGenOutput>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DebugDrawer.cs" />
-    <Compile Include="Shaders\DebugEffect.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>DebugEffect.xkfx</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="Shaders\Default.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Default.xksl</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Compile>
+    <Compile Include="DebugDrawerApp.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="SiliconStudio.Xenko.Shaders.Compiler">
-      <HintPath>..\..\..\..\..\..\..\..\..\..\Program Files\Silicon Studio\Xenko\GamePackages\Xenko.2.1.1.1\Bin\Windows\SiliconStudio.Xenko.Shaders.Compiler.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+    <Content Include="Resources\Icon.ico" />
+  </ItemGroup>  
+  <Import Condition="'$(SiliconStudioRuntime)' == ''" Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SiliconStudioPackageProps)" Condition="Exists('$(SiliconStudioPackageProps)')" />
   <Import Project="$(SiliconStudioXenkoDir)\Targets\SiliconStudio.Common.targets" Condition="Exists('$(SiliconStudioXenkoDir)\Targets\SiliconStudio.Common.targets')" />
   <Target Name="EnsureSiliconStudioXenkoInstalled" BeforeTargets="PrepareForBuild">
