@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using SiliconStudio.Core.Mathematics;
 using SiliconStudio.Core.Serialization.Contents;
 using SiliconStudio.Xenko.Engine;
@@ -47,15 +48,23 @@ namespace DebugDrawer
 
             Random random = new Random();
             float radius = 2;
-            int vertexCount = 50;
+            int edgeCount = 5000;
 
             var textureCoordinate = new Vector2(.5f, .5f);
-            VertexPositionColorTexture[] vertices = new VertexPositionColorTexture[50];
-            for (int i = 0; i < vertexCount; i++)
+            VertexPositionColorTexture[] vertices = new VertexPositionColorTexture[edgeCount];
+            ISet<Vector3> points = new HashSet<Vector3>();
+            while (points.Count < 50)
             {
-                var position = new Vector3((float) (random.NextDouble() * radius),
-                    (float) (random.NextDouble() * radius),
-                    (float) (random.NextDouble() * radius));
+                var position = new Vector3((float)(random.NextDouble() * radius),
+                    (float)(random.NextDouble() * radius),
+                    (float)(random.NextDouble() * radius));
+                points.Add(position);
+            }
+            Vector3[] array = points.ToArray();
+
+            for (int i = 0; i < edgeCount; i++)
+            {
+                Vector3 position = array[random.Next(points.Count)];
                 
                 vertices[i] = new VertexPositionColorTexture(position, Color.YellowGreen, textureCoordinate);
             }
@@ -66,8 +75,8 @@ namespace DebugDrawer
             {
                 PrimitiveType = PrimitiveType.LineStrip,
                 VertexBuffers = new[]
-                    {new VertexBufferBinding(vBuffer, VertexPositionColorTexture.Layout, vertexCount)},
-                DrawCount = vertexCount
+                    {new VertexBufferBinding(vBuffer, VertexPositionColorTexture.Layout, edgeCount)},
+                DrawCount = edgeCount
             };
 
             var mesh = new Mesh { Draw = meshDraw };
