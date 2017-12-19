@@ -18,7 +18,7 @@ namespace DebugDrawer
 
         public DebugDrawerSystem(IGame game) : base(game.Services)
         {
-            if(game == null) throw new ArgumentNullException(nameof(game));
+            if (game == null) throw new ArgumentNullException(nameof(game));
 
             _game = game;
             Enabled = true;
@@ -28,8 +28,6 @@ namespace DebugDrawer
         public override void Initialize()
         {
             base.Initialize();
-
-
         }
 
         public override void Draw(GameTime gameTime)
@@ -37,59 +35,57 @@ namespace DebugDrawer
             base.Draw(gameTime);
 
             if (!_initialized)
-            {
                 _initialized = TryInitialize();
-            }
         }
 
         private bool TryInitialize()
         {
             if (_game.GraphicsDevice == null) return false;
 
-            Random random = new Random();
+            var random = new Random();
             float radius = 2;
-            int edgeCount = 5000;
-
-            var textureCoordinate = new Vector2(.5f, .5f);
-            VertexPositionColorTexture[] vertices = new VertexPositionColorTexture[edgeCount];
-            ISet<Vector3> points = new HashSet<Vector3>();
-            while (points.Count < 50)
+            var edgeCount = 500;
+            int i2 = edgeCount * 2;
+            
+            var vertices = new VertexPositionColorTexture[50];
+            for (int i = 0; i < vertices.Length; i++)
             {
-                var position = new Vector3((float)(random.NextDouble() * radius),
-                    (float)(random.NextDouble() * radius),
-                    (float)(random.NextDouble() * radius));
-                points.Add(position);
-            }
-            Vector3[] array = points.ToArray();
-
-            for (int i = 0; i < edgeCount; i++)
-            {
-                Vector3 position = array[random.Next(points.Count)];
-                
-                vertices[i] = new VertexPositionColorTexture(position, Color.YellowGreen, textureCoordinate);
+                var position = new Vector3((float) (random.NextDouble() * radius),
+                    (float) (random.NextDouble() * radius),
+                    (float) (random.NextDouble() * radius));
+                var textureCoordinate = new Vector2((float)random.NextDouble(), (float)random.NextDouble());
+                vertices[i] = new VertexPositionColorTexture(position, Color.Cyan, textureCoordinate);
             }
 
-            var vBuffer = Buffer.Vertex.New(_game.GraphicsDevice, vertices);
+            var indices = new int[i2];
+            for (int i = 0; i < i2; i++)
+            {
+                indices[i] = random.Next(vertices.Length);
+            }
 
+            var vertexBuffer = Buffer.Vertex.New(_game.GraphicsDevice, vertices);
+            var indexBuffer = Buffer.Index.New(_game.GraphicsDevice, indices);
             var meshDraw = new MeshDraw
             {
                 PrimitiveType = PrimitiveType.LineStrip,
                 VertexBuffers = new[]
-                    {new VertexBufferBinding(vBuffer, VertexPositionColorTexture.Layout, edgeCount)},
+                {
+                    new VertexBufferBinding(vertexBuffer, VertexPositionColorTexture.Layout, edgeCount)
+                },
+                IndexBuffer = new IndexBufferBinding(indexBuffer, true, indices.Length),
                 DrawCount = edgeCount
             };
 
-            var mesh = new Mesh { Draw = meshDraw };
-
-            var model = new Model { mesh };
+            var mesh = new Mesh {Draw = meshDraw};
+            var model = new Model {mesh};
             var contentManager = _game.Services.GetService<IContentManager>();
             var debugMaterial = contentManager.Load<Material>("DebugMaterial");
             model.Materials.Add(debugMaterial);
             var modelComponent = new ModelComponent(model);
 
-            var entity = new Entity { modelComponent };
+            var entity = new Entity {modelComponent};
 
-            SceneSystem sceneSystem = _game.Services.GetService<SceneSystem>();
+            var sceneSystem = _game.Services.GetService<SceneSystem>();
             sceneSystem.SceneInstance.RootScene.Entities.Add(entity);
 
             return true;
