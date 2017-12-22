@@ -1,7 +1,7 @@
 ﻿using SiliconStudio.Core;
 using SiliconStudio.Xenko.Games;
 
-namespace DebugDrawer
+namespace Xenko.DebugDrawer
 {
     public class DebugDrawerSystem : GameSystemBase
     {

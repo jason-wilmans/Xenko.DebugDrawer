@@ -104,9 +104,9 @@
       <Name>DebugDrawer.Game</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\DebugDrawer\DebugDrawer.csproj">
-      <Project>{3b701dca-3dc3-475a-9e80-3dcdf1375ded}</Project>
-      <Name>DebugDrawer</Name>
+    <ProjectReference Include="..\Xenko.DebugDrawer\Xenko.DebugDrawer.csproj">
+      <Project>{46b60c61-9c9a-4115-874a-e72695db38c3}</Project>
+      <Name>Xenko.DebugDrawer</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

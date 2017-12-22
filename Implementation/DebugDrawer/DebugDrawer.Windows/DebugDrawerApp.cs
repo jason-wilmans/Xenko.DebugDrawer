@@ -1,4 +1,5 @@
 using SiliconStudio.Xenko.Engine;
+using Xenko.DebugDrawer;
 
 namespace DebugDrawer
 {

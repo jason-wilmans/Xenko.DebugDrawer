@@ -112,9 +112,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DebugDrawer\DebugDrawer.csproj">
-      <Project>{3B701DCA-3DC3-475A-9E80-3DCDF1375DED}</Project>
-      <Name>DebugDrawer</Name>
+    <ProjectReference Include="..\Xenko.DebugDrawer\Xenko.DebugDrawer.csproj">
+      <Project>{46b60c61-9c9a-4115-874a-e72695db38c3}</Project>
+      <Name>Xenko.DebugDrawer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
