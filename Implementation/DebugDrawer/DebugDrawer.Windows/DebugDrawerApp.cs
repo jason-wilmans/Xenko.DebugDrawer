@@ -9,7 +9,7 @@ namespace DebugDrawer
         {
             using (var game = new Game())
             {
-                game.GameSystems.Add(new DebugDrawerSystem(game.Services));
+                game.GameSystems.Add(new DebugDrawerSystem(game));
                 game.Run();
             }
         }
