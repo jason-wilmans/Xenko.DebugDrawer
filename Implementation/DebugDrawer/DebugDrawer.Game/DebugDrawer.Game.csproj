@@ -110,6 +110,7 @@
   <ItemGroup>
     <Compile Include="BasicCameraController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimpleShapesExample.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Xenko.DebugDrawer\Xenko.DebugDrawer.csproj">

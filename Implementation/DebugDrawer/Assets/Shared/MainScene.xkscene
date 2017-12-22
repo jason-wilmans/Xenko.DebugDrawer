@@ -42,10 +42,12 @@ Hierarchy:
                 Components:
                     aa6f2059c1bfe6af93c4309634a858b3: !TransformComponent
                         Id: a73380de-475c-44dc-9374-02c6549d9a2c
-                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Position: {X: 0.0, Y: 2.0, Z: 0.0}
                         Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
                         Scale: {X: 1.0, Y: 1.0, Z: 1.0}
                         Children: {}
+                    19b4ec991a9258e94ff6bee4fc639848: !DebugDrawer.SimpleShapesExample,DebugDrawer.Game
+                        Id: c8edb6fb-7864-4227-9a94-e7f4fa105f61
         -   Entity:
                 Id: 64454727-cd85-4e8e-bc7b-ff6e56cb657d
                 Name: Skybox
