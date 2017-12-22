@@ -24,6 +24,9 @@ Profiles:
             -   Id: 6bdab04c-b032-48ad-a587-7a7f4c0971f8
                 Location: DebugDrawer.Game/DebugDrawer.Game.csproj
                 Type: Library
+            -   Id: 46b60c61-9c9a-4115-874a-e72695db38c3
+                Location: Xenko.DebugDrawer/Xenko.DebugDrawer.csproj
+                Type: Library
     -   Name: Windows
         Platform: Windows
         InheritProfiles: []
