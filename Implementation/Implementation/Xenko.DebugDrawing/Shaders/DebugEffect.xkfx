@@ -1,9 +1,0 @@
-﻿using SiliconStudio.Xenko.Effects.Data;
-
-namespace XenkoEffects
-{
-    effect BasicEffect
-    {
-        mixin ShaderBase;
-    };
-}
