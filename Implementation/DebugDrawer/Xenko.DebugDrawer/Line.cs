@@ -3,21 +3,20 @@ using SiliconStudio.Core.Mathematics;
 
 namespace Xenko.DebugDrawer
 {
-    public class Line : IShape
+    public struct Line : IShape
     {
-        private readonly Vector3[] _lines;
-
         public Line(Vector3 start, Vector3 end, Color color)
         {
-            _lines = new[] {start, end};
-            Lines = new[] {this};
+            Start = start;
+            End = end;
             Color = color;
+            Lines = new Line[1];
+            ((Line[])Lines)[0] = this;
         }
 
-        public Vector3 Start => _lines[0];
-        public Vector3 End => _lines[1];
+        public Vector3 Start { get; set; }
+        public Vector3 End { get; set; }
         public Color Color { get; set; }
-        public IEnumerable<Vector3> Vertices => _lines;
 
         public IEnumerable<Line> Lines { get; }
     }
