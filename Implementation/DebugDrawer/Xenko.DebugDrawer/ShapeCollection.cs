@@ -36,43 +36,49 @@ namespace Xenko.DebugDrawer
 
         public void UpdateMesh()
         {
-            VertexPositionColorTexture[] vertices;
-            int[] indices;
-
+            List<VertexPositionColorTexture> vertices = new List<VertexPositionColorTexture>();
+            var indices = new LinkedList<int>();
             lock (_shapes)
             {
-                vertices = _shapes
-                    .SelectMany(shape => shape.Vertices)
-                    .Select(vertex => new VertexPositionColorTexture(vertex, _color, Zero))
-                    .ToArray();
-
-                var indicesList = new LinkedList<int>();
                 foreach (var line in _shapes.SelectMany(shape => shape.Lines))
                 {
-                    var startIndex = vertices.IndexOf(vertex => vertex.Position == line.Start);
-                    var endIndex = vertices.IndexOf(vertex => vertex.Position == line.End);
-
-                    indicesList.AddLast(startIndex);
-                    indicesList.AddLast(endIndex);
+                    int startIndex = OptionalInsert(line.Start, vertices);
+                    int endIndex = OptionalInsert(line.End, vertices);
+                    indices.AddLast(startIndex);
+                    indices.AddLast(endIndex);
                 }
-                indices = indicesList.ToArray();
+                
             }
 
-            var vertexBuffer = Buffer.Vertex.New(_graphicsDevice, vertices);
-            var indexBuffer = Buffer.Index.New(_graphicsDevice, indices);
+            var vertexBuffer = Buffer.Vertex.New(_graphicsDevice, vertices.ToArray());
+            var indexBuffer = Buffer.Index.New(_graphicsDevice, indices.ToArray());
             var meshDraw = new MeshDraw
             {
                 PrimitiveType = PrimitiveType.LineStrip,
                 VertexBuffers = new[]
                 {
-                    new VertexBufferBinding(vertexBuffer, VertexPositionColorTexture.Layout, vertices.Length)
+                    new VertexBufferBinding(vertexBuffer, VertexPositionColorTexture.Layout, vertices.Count)
                 },
-                IndexBuffer = new IndexBufferBinding(indexBuffer, true, indices.Length),
-                DrawCount = indices.Length
+                IndexBuffer = new IndexBufferBinding(indexBuffer, true, indices.Count),
+                DrawCount = indices.Count
             };
 
             var mesh = new Mesh {Draw = meshDraw};
             _model.Meshes = new List<Mesh> {mesh};
+        }
+
+        private int OptionalInsert(Vector3 point, List<VertexPositionColorTexture> verticeList)
+        {
+            var vertex = new VertexPositionColorTexture(point, _color, Zero);
+            int index = verticeList.IndexOf(vertex);
+            if (index >= 0)
+            {
+                return index;
+            }
+
+            index = verticeList.Count;
+            verticeList.Insert(index, vertex);
+            return index;
         }
     }
 }

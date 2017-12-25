@@ -31,41 +31,35 @@ namespace Xenko.DebugDrawer
             Instance = this;
         }
 
-        public override void Draw(GameTime gameTime)
+        protected override void LoadContent()
         {
-            base.Draw(gameTime);
+            base.LoadContent();
 
-            if (!_initialized)
-                _initialized = TryInitialize();
-        }
-
-        private bool TryInitialize()
-        {
-            if (_game.GraphicsDevice == null) return false;
-
-            _rootEntity = new Entity
-            {
-                Name = "DebugRoot"
-            };
             var contentManager = _game.Services.GetService<IContentManager>();
             _debugMaterial = contentManager.Load<Material>("DebugMaterial");
-            _sceneSystem = _game.Services.GetService<SceneSystem>();
-            _sceneSystem.SceneInstance.RootScene.Entities.Add(_rootEntity);
-
-            return true;
         }
-
+        
         public void Add<T>(T geometry) where T : IShape
         {
             if (Equals(geometry, default(T)))
                 throw new ArgumentException(nameof(geometry));
 
-            var geometries = EnsureInfrastructure(geometry.Color);
+            var geometries = EnsureEntities(geometry.Color);
             geometries.Add(geometry);
         }
 
-        private ShapeCollection EnsureInfrastructure(Color color)
+        private ShapeCollection EnsureEntities(Color color)
         {
+            if (_rootEntity == null)
+            {
+                _rootEntity = new Entity
+                {
+                    Name = "DebugRoot"
+                };
+                _sceneSystem = _game.Services.GetService<SceneSystem>();
+                _sceneSystem.SceneInstance.RootScene.Entities.Add(_rootEntity);
+            }
+
             if (!_geometries.ContainsKey(color))
             {
                 var model = CreateEntity(color);
