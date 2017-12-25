@@ -378,6 +378,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DebugDrawerSystem.cs" />
+    <Compile Include="Materials.cs" />
     <Compile Include="ShapeCollection.cs" />
     <Compile Include="IShape.cs" />
     <Compile Include="Line.cs" />

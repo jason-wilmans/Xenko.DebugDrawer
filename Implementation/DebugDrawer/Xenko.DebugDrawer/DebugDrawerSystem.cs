@@ -2,7 +2,6 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using SiliconStudio.Core.Mathematics;
-using SiliconStudio.Core.Serialization.Contents;
 using SiliconStudio.Xenko.Engine;
 using SiliconStudio.Xenko.Games;
 using SiliconStudio.Xenko.Rendering;
@@ -15,8 +14,6 @@ namespace Xenko.DebugDrawer
 
         private readonly IGame _game;
         private readonly IDictionary<Color, ShapeCollection> _geometries;
-        private Material _debugMaterial;
-        private bool _initialized;
         private Entity _rootEntity;
         private SceneSystem _sceneSystem;
 
@@ -31,14 +28,6 @@ namespace Xenko.DebugDrawer
             Instance = this;
         }
 
-        protected override void LoadContent()
-        {
-            base.LoadContent();
-
-            var contentManager = _game.Services.GetService<IContentManager>();
-            _debugMaterial = contentManager.Load<Material>("DebugMaterial");
-        }
-        
         public void Add<T>(T geometry) where T : IShape
         {
             if (Equals(geometry, default(T)))
@@ -72,7 +61,8 @@ namespace Xenko.DebugDrawer
         private Model CreateEntity(Color color)
         {
             var model = new Model();
-            model.Materials.Add(_debugMaterial);
+            var debugMaterial = Materials.CreateDebugMaterial(color, true, GraphicsDevice);
+            model.Materials.Add(debugMaterial);
             var modelComponent = new ModelComponent(model);
             var colorEntity = new Entity
             {

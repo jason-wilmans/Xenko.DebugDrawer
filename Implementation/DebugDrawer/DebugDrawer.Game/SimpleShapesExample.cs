@@ -5,17 +5,18 @@ using Xenko.DebugDrawer;
 
 namespace DebugDrawer
 {
-    public class SimpleShapesExample : AsyncScript
+    public class SimpleShapesExample : StartupScript
     {
         private DebugDrawerSystem _debugDrawer;
 
-        public override async Task Execute()
+        public override void Start()
         {
-            await Task.Delay(1000);
+            base.Start();
+
             _debugDrawer = DebugDrawerSystem.Instance;
-            var line1 = new Line(new Vector3(0, 0, 0), new Vector3(1, 2, 3), Color.Cyan);
+            var line1 = new Line(new Vector3(0, 0, 0), new Vector3(1, 2, 3), Color.Chartreuse);
             _debugDrawer.Add(line1);
-            var line2 = new Line(new Vector3(1, 2, 3), new Vector3(0, 2, 0), Color.Cyan);
+            var line2 = new Line(new Vector3(1, 2, 3), new Vector3(0, 2, 0), Color.Red);
             _debugDrawer.Add(line2);
         }
     }
