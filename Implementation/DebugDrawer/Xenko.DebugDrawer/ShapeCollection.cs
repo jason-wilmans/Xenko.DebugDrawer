@@ -1,8 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using SiliconStudio.Core.Mathematics;
+using SiliconStudio.Xenko.Engine;
 using SiliconStudio.Xenko.Graphics;
 using SiliconStudio.Xenko.Rendering;
+using Xenko.DebugDrawer.Shapes;
+using Buffer = SiliconStudio.Xenko.Graphics.Buffer;
 
 namespace Xenko.DebugDrawer
 {
@@ -13,22 +17,46 @@ namespace Xenko.DebugDrawer
 
         private readonly object _geometryKey = new object();
         private readonly GraphicsDevice _graphicsDevice;
-        private readonly Model _model;
-        private readonly ISet<IShape> _shapes;
+        private readonly ISet<AShape> _shapes;
+        private readonly Material _material;
 
-        public ShapeCollection(Color color, GraphicsDevice graphicsDevice, Model model)
+        public Entity Entity { get; }
+
+        public ShapeCollection(Color color, GraphicsDevice graphicsDevice)
         {
             _color = color;
             _graphicsDevice = graphicsDevice;
-            _model = model;
-            _shapes = new HashSet<IShape>();
+            _shapes = new HashSet<AShape>();
+
+            var model = new Model();
+            _material = Materials.CreateDebugMaterial(color, true, graphicsDevice);
+            model.Materials.Add(_material);
+            var modelComponent = new ModelComponent(model);
+            Entity = new Entity
+            {
+                Name = color.ToString(),
+                Components = { modelComponent }
+            };
         }
 
-        public void Add(IShape geometry)
+        public void Add(AShape shape)
         {
+            if(shape == null) throw new ArgumentNullException(nameof(shape));
+
             lock (_geometryKey)
             {
-                _shapes.Add(geometry);
+                _shapes.Add(shape);
+                UpdateMesh();
+            }
+        }
+        
+        public void Remove(AShape shape)
+        {
+            if (shape == null) throw new ArgumentNullException(nameof(shape));
+
+            lock (_geometryKey)
+            {
+                _shapes.Remove(shape);
                 UpdateMesh();
             }
         }
@@ -46,7 +74,6 @@ namespace Xenko.DebugDrawer
                     indices.AddLast(startIndex);
                     indices.AddLast(endIndex);
                 }
-                
             }
 
             var vertexBuffer = Buffer.Vertex.New(_graphicsDevice, vertices.ToArray());
@@ -63,7 +90,11 @@ namespace Xenko.DebugDrawer
             };
 
             var mesh = new Mesh {Draw = meshDraw};
-            _model.Meshes = new List<Mesh> {mesh};
+            Entity.Get<ModelComponent>().Model = new Model
+            {
+                Meshes = {mesh},
+                Materials = { _material}
+            };
         }
 
         private int OptionalInsert(Vector3 point, List<VertexPositionColorTexture> verticeList)
@@ -78,6 +109,14 @@ namespace Xenko.DebugDrawer
             index = verticeList.Count;
             verticeList.Insert(index, vertex);
             return index;
+        }
+
+        public bool Contains(AShape aShape)
+        {
+            lock (_geometryKey)
+            {
+                return _shapes.Contains(aShape);
+            }
         }
     }
 }

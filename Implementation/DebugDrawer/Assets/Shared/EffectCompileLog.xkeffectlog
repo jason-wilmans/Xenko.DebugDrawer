@@ -529,3 +529,111 @@ UsedParameters:
         Mixins:
             -   ClassName: MaterialStream
             -   ClassName: MaterialPixelShadingStream
+---
+!EffectCompileRequest
+EffectName: XenkoForwardShadingEffect
+UsedParameters:
+    Material.PixelStageSurfaceShaders: !ShaderMixinSource
+        Mixins:
+            -   ClassName: MaterialSurfaceArray
+        Compositions:
+            layers: !ShaderArraySource
+                Values:
+                    - !ShaderMixinSource
+                        Mixins:
+                            -   ClassName: MaterialSurfaceDiffuse
+                        Compositions:
+                            diffuseMap: !ShaderClassSource
+                                ClassName: ComputeColorConstantColorLink
+                                GenericArguments: [Material.DiffuseValue]
+                    - !ShaderMixinSource
+                        Mixins:
+                            -   ClassName: MaterialSurfaceLightingAndShading
+                        Compositions:
+                            surfaces: !ShaderArraySource
+                                Values:
+                                    - !ShaderClassSource
+                                        ClassName: MaterialSurfaceShadingDiffuseLambert
+                                        GenericArguments: [false]
+    Material.PixelStageStreamInitializer: !ShaderMixinSource
+        Mixins:
+            -   ClassName: MaterialStream
+            -   ClassName: MaterialPixelShadingStream
+    Lighting.DirectLightGroups:
+        - !ShaderMixinSource
+            Mixins:
+                -   ClassName: LightDirectionalGroup
+                    GenericArguments: [8]
+        - !ShaderClassSource
+            ClassName: LightClusteredPointGroup
+        - !ShaderClassSource
+            ClassName: LightClusteredSpotGroup
+    Lighting.EnvironmentLights:
+        - !ShaderClassSource
+            ClassName: LightSimpleAmbient
+        - !ShaderMixinGeneratorSource
+            Name: LightSkyboxEffect
+        - !ShaderClassSource
+            ClassName: EnvironmentLight
+    LightSkyboxShader.LightDiffuseColor.environmentLights[1]: !ShaderClassSource
+        ClassName: SphericalHarmonicsEnvironmentColor
+        GenericArguments: [3]
+    LightSkyboxShader.LightSpecularColor.environmentLights[1]: !ShaderClassSource
+        ClassName: RoughnessCubeMapEnvironmentColor
+    XenkoEffectBase.RenderTargetExtensions: !ShaderMixinSource
+        Macros:
+            -   Name: SILICON_STUDIO_RENDER_TARGET_COUNT
+                Definition: 1
+            -   Name: SILICON_STUDIO_MULTISAMPLE_COUNT
+                Definition: 1
+---
+!EffectCompileRequest
+EffectName: XenkoForwardShadingEffect.ShadowMapCaster
+UsedParameters:
+    Material.PixelStageSurfaceShaders: !ShaderMixinSource
+        Mixins:
+            -   ClassName: MaterialSurfaceArray
+        Compositions:
+            layers: !ShaderArraySource
+                Values:
+                    - !ShaderMixinSource
+                        Mixins:
+                            -   ClassName: MaterialSurfaceDiffuse
+                        Compositions:
+                            diffuseMap: !ShaderClassSource
+                                ClassName: ComputeColorConstantColorLink
+                                GenericArguments: [Material.DiffuseValue]
+                    - !ShaderMixinSource
+                        Mixins:
+                            -   ClassName: MaterialSurfaceLightingAndShading
+                        Compositions:
+                            surfaces: !ShaderArraySource
+                                Values:
+                                    - !ShaderClassSource
+                                        ClassName: MaterialSurfaceShadingDiffuseLambert
+                                        GenericArguments: [false]
+    Material.PixelStageStreamInitializer: !ShaderMixinSource
+        Mixins:
+            -   ClassName: MaterialStream
+            -   ClassName: MaterialPixelShadingStream
+    Lighting.DirectLightGroups:
+        - !ShaderMixinSource
+            Mixins:
+                -   ClassName: LightDirectionalGroup
+                    GenericArguments: [8]
+        - !ShaderClassSource
+            ClassName: LightClusteredPointGroup
+        - !ShaderClassSource
+            ClassName: LightClusteredSpotGroup
+    Lighting.EnvironmentLights:
+        - !ShaderClassSource
+            ClassName: LightSimpleAmbient
+        - !ShaderMixinGeneratorSource
+            Name: LightSkyboxEffect
+        - !ShaderClassSource
+            ClassName: EnvironmentLight
+    LightSkyboxShader.LightDiffuseColor.environmentLights[1]: !ShaderClassSource
+        ClassName: SphericalHarmonicsEnvironmentColor
+        GenericArguments: [3]
+    LightSkyboxShader.LightSpecularColor.environmentLights[1]: !ShaderClassSource
+        ClassName: RoughnessCubeMapEnvironmentColor

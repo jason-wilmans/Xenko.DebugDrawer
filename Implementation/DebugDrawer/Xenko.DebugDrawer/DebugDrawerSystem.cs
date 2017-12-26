@@ -5,15 +5,16 @@ using SiliconStudio.Core.Mathematics;
 using SiliconStudio.Xenko.Engine;
 using SiliconStudio.Xenko.Games;
 using SiliconStudio.Xenko.Rendering;
+using Xenko.DebugDrawer.Shapes;
 
 namespace Xenko.DebugDrawer
 {
-    public class DebugDrawerSystem : GameSystemBase
+    public class DebugDrawerSystem : GameSystemBase, IShapePropetyChangedHandler
     {
         public static DebugDrawerSystem Instance;
 
         private readonly IGame _game;
-        private readonly IDictionary<Color, ShapeCollection> _geometries;
+        private readonly IDictionary<Color, ShapeCollection> _shapeCollections;
         private Entity _rootEntity;
         private SceneSystem _sceneSystem;
 
@@ -21,20 +22,22 @@ namespace Xenko.DebugDrawer
         {
             if (game == null) throw new ArgumentNullException(nameof(game));
 
-            _geometries = new ConcurrentDictionary<Color, ShapeCollection>();
+            _shapeCollections = new ConcurrentDictionary<Color, ShapeCollection>();
             _game = game;
             Enabled = true;
             Visible = true;
             Instance = this;
         }
 
-        public void Add<T>(T geometry) where T : IShape
+        public void Add<T>(T shape) where T : AShape
         {
-            if (Equals(geometry, default(T)))
-                throw new ArgumentException(nameof(geometry));
+            if (Equals(shape, default(T)))
+                throw new ArgumentException(nameof(shape));
 
-            var geometries = EnsureEntities(geometry.Color);
-            geometries.Add(geometry);
+            shape.ChangeHandler = this;
+
+            var geometries = EnsureEntities(shape.Color);
+            geometries.Add(shape);
         }
 
         private ShapeCollection EnsureEntities(Color color)
@@ -49,28 +52,33 @@ namespace Xenko.DebugDrawer
                 _sceneSystem.SceneInstance.RootScene.Entities.Add(_rootEntity);
             }
 
-            if (!_geometries.ContainsKey(color))
+            if (!_shapeCollections.ContainsKey(color))
             {
-                var model = CreateEntity(color);
-                _geometries[color] = new ShapeCollection(color, GraphicsDevice, model);
+                var shapeCollection = new ShapeCollection(color, GraphicsDevice);
+                _shapeCollections[color] = shapeCollection;
+                _rootEntity.AddChild(shapeCollection.Entity);
             }
 
-            return _geometries[color];
+            return _shapeCollections[color];
         }
 
-        private Model CreateEntity(Color color)
+        public void OnPropertyChanged(AShape shape)
         {
-            var model = new Model();
-            var debugMaterial = Materials.CreateDebugMaterial(color, true, GraphicsDevice);
-            model.Materials.Add(debugMaterial);
-            var modelComponent = new ModelComponent(model);
-            var colorEntity = new Entity
-            {
-                Name = color.ToString(),
-                Components = {modelComponent}
-            };
-            _rootEntity.AddChild(colorEntity);
-            return model;
+            EnsureEntities(shape.Color);
+
+            var collection = _shapeCollections[shape.Color];
+            //if (!collection.Contains(shape))
+            //{
+            //    foreach (var otherCollection in _shapeCollections)
+            //    {
+            //        otherCollection.Value.Remove(shape);
+            //    }
+                
+            //    collection.Add(shape);
+            //    return;
+            //}
+
+            collection.UpdateMesh();
         }
     }
 }
