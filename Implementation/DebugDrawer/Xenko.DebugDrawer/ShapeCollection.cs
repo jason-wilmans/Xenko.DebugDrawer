@@ -19,8 +19,6 @@ namespace Xenko.DebugDrawer
         private readonly GraphicsDevice _graphicsDevice;
         private readonly ISet<AShape> _shapes;
         private readonly Material _material;
-        private Buffer _vertexBuffer;
-        private Buffer _indexBuffer;
 
         public Entity Entity { get; }
 
@@ -39,10 +37,6 @@ namespace Xenko.DebugDrawer
                 Name = color.ToString(),
                 Components = { modelComponent }
             };
-
-            _vertices = new 
-            _vertexBuffer = Buffer.Vertex.New(_graphicsDevice, _vertices.ToArray());
-            _indexBuffer = Buffer.Index.New(_graphicsDevice, indices.ToArray());
         }
 
         public void Add(AShape shape)
@@ -81,15 +75,17 @@ namespace Xenko.DebugDrawer
                     indices.AddLast(endIndex);
                 }
             }
-            
+
+            var vertexBuffer = Buffer.Vertex.New(_graphicsDevice, vertices.ToArray());
+            var indexBuffer = Buffer.Index.New(_graphicsDevice, indices.ToArray());
             var meshDraw = new MeshDraw
             {
                 PrimitiveType = PrimitiveType.LineStrip,
                 VertexBuffers = new[]
                 {
-                    new VertexBufferBinding(_vertexBuffer, VertexPositionColorTexture.Layout, vertices.Count)
+                    new VertexBufferBinding(vertexBuffer, VertexPositionColorTexture.Layout, vertices.Count)
                 },
-                IndexBuffer = new IndexBufferBinding(_indexBuffer, true, indices.Count),
+                IndexBuffer = new IndexBufferBinding(indexBuffer, true, indices.Count),
                 DrawCount = indices.Count
             };
 

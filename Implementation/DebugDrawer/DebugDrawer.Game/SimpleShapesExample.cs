@@ -22,7 +22,7 @@ namespace DebugDrawer
             _debugDrawer.Add(_line1);
             _line2 = new Line(new Vector3(1, 1, 0), new Vector3(1, 1, 1), Color.Red);
             _debugDrawer.Add(_line2);
-            _box = new Box(new Vector3(.5f, 5f, 0), Vector3.One, Color.Yellow);
+            _box = new Box(new Vector3(2.5f, 2, 0), Vector3.One, Color.Yellow);
             _debugDrawer.Add(_box);
         }
 
@@ -32,7 +32,7 @@ namespace DebugDrawer
             var delta = Vector3.UnitY + new Vector3(0, 0.5f, 0) * sin / 5;
             _line1.End = delta;
             _line2.Start = delta;
-            _box.Scale = .25f * Vector3.One * sin;
+            _box.Scale = Vector3.One * sin;
         }
     }
 }
