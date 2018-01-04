@@ -54,7 +54,7 @@ namespace Xenko.DebugDrawer
 
             if (!_shapeCollections.ContainsKey(color))
             {
-                var shapeCollection = new ShapeCollection(color, GraphicsDevice);
+                var shapeCollection = new ShapeCollection(color, GraphicsDevice, _game.GraphicsContext);
                 _shapeCollections[color] = shapeCollection;
                 _rootEntity.AddChild(shapeCollection.Entity);
             }
