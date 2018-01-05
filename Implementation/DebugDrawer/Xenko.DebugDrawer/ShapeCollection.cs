@@ -49,7 +49,7 @@ namespace Xenko.DebugDrawer
                     new Mesh {
                         Draw = new MeshDraw
                         {
-                            PrimitiveType = PrimitiveType.LineStrip,
+                            PrimitiveType = PrimitiveType.LineList,
                             VertexBuffers = new[] {
                                 new VertexBufferBinding(_vertexBuffer,
                                     VertexPositionColorTexture.Layout,
@@ -57,11 +57,9 @@ namespace Xenko.DebugDrawer
                             },
                             IndexBuffer = new IndexBufferBinding(_indexBuffer, true, _indexArray.Length * sizeof(int)),
                             DrawCount = _vertexArray.Length
-                        },
-                        MaterialIndex = 0
+                        }
                     }
-                },
-                Materials = { _material }
+                }
             };
             _material = Materials.CreateDebugMaterial(color, true, graphicsDevice);
             model.Materials.Add(_material);

@@ -67,16 +67,16 @@ namespace Xenko.DebugDrawer
             EnsureEntities(shape.Color);
 
             var collection = _shapeCollections[shape.Color];
-            //if (!collection.Contains(shape))
-            //{
-            //    foreach (var otherCollection in _shapeCollections)
-            //    {
-            //        otherCollection.Value.Remove(shape);
-            //    }
-                
-            //    collection.Add(shape);
-            //    return;
-            //}
+            if (!collection.Contains(shape))
+            {
+                foreach (var otherCollection in _shapeCollections)
+                {
+                    otherCollection.Value.Remove(shape);
+                }
+
+                collection.Add(shape);
+                return;
+            }
 
             collection.UpdateMesh();
         }
