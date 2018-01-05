@@ -12,7 +12,6 @@ namespace Xenko.DebugDrawer
 {
     internal class ShapeCollection
     {
-        private static readonly Vector2 Zero = Vector2.Zero;
         private readonly Color _color;
 
         private readonly object _geometryKey = new object();
@@ -41,32 +40,32 @@ namespace Xenko.DebugDrawer
 
         private void InitEntity(Color color, GraphicsDevice graphicsDevice)
         {
-            
             _vertexBuffer = Buffer.Vertex.New(_graphicsDevice, _vertexArray, GraphicsResourceUsage.Dynamic);
             _indexBuffer = Buffer.Index.New(_graphicsDevice, _indexArray, GraphicsResourceUsage.Dynamic);
 
-            var meshDraw = new MeshDraw
-            {
-                PrimitiveType = PrimitiveType.LineStrip,
-                VertexBuffers = new[] {
-                    new VertexBufferBinding(_vertexBuffer, VertexPositionColorTexture.Layout, _vertexArray.Length * VertexPositionColorTexture.Layout.CalculateSize())
-                },
-                IndexBuffer = new IndexBufferBinding(_indexBuffer, true, _indexArray.Length * sizeof(int)),
-                DrawCount = _vertexArray.Length
-            };
             var model = new Model
             {
                 Meshes = {
                     new Mesh {
-                        MaterialIndex = 0,
-                        Draw = meshDraw
+                        Draw = new MeshDraw
+                        {
+                            PrimitiveType = PrimitiveType.LineStrip,
+                            VertexBuffers = new[] {
+                                new VertexBufferBinding(_vertexBuffer,
+                                    VertexPositionColorTexture.Layout,
+                                    _vertexArray.Length * VertexPositionColorTexture.Layout.CalculateSize())
+                            },
+                            IndexBuffer = new IndexBufferBinding(_indexBuffer, true, _indexArray.Length * sizeof(int)),
+                            DrawCount = _vertexArray.Length
+                        },
+                        MaterialIndex = 0
                     }
                 },
                 Materials = { _material }
             };
-            
             _material = Materials.CreateDebugMaterial(color, true, graphicsDevice);
             model.Materials.Add(_material);
+
             Entity = new Entity
             {
                 Name = color.ToString(),
@@ -115,9 +114,9 @@ namespace Xenko.DebugDrawer
             _indexBuffer.SetData(_graphicsContext.CommandList, indices.ToArray());
         }
 
-        private int OptionalInsert(Vector3 point, List<VertexPositionColorTexture> verticeList)
+        private int OptionalInsert(Vector3 point, IList<VertexPositionColorTexture> verticeList)
         {
-            var vertex = new VertexPositionColorTexture(point, _color, Zero);
+            var vertex = new VertexPositionColorTexture(point, _color, Vector2.Zero);
             int index = verticeList.IndexOf(vertex);
             if (index >= 0)
             {

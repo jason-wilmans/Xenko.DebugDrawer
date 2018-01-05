@@ -22,13 +22,13 @@ namespace DebugDrawer
             //_debugDrawer.Add(_line1);
             //_line2 = new Line(new Vector3(1, 1, 0), new Vector3(1, 1, 1), Color.Red);
             //_debugDrawer.Add(_line2);
-            _box = new Box(new Vector3(2.5f, 2, 0), Vector3.One, Color.Yellow);
+            _box = new Box(new Vector3(1.5f, .5f, 0), Vector3.One * .125f, Color.Yellow);
             _debugDrawer.Add(_box);
         }
 
         public override void Update()
         {
-            float sin = (float) Math.Sin(Game.PlayTime.TotalTime.TotalSeconds);
+            float sin = (float)Math.Sin(Game.PlayTime.TotalTime.TotalSeconds);
             //var delta = Vector3.UnitY + new Vector3(0, 0.5f, 0) * sin / 5;
             //_line1.End = delta;
             //_line2.Start = delta;
