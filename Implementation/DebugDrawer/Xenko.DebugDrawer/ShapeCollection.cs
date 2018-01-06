@@ -13,8 +13,7 @@ namespace Xenko.DebugDrawer
     internal class ShapeCollection
     {
         private readonly Color _color;
-
-        private readonly object _geometryKey = new object();
+        
         private readonly GraphicsDevice _graphicsDevice;
         private readonly GraphicsContext _graphicsContext;
         private readonly ISet<AShape> _shapes;
@@ -25,6 +24,7 @@ namespace Xenko.DebugDrawer
         private Buffer _indexBuffer;
 
         public Entity Entity { get; set; }
+        public bool IsModified { get; set; }
 
         public ShapeCollection(Color color, GraphicsDevice graphicsDevice, GraphicsContext graphicsContext)
         {
@@ -75,26 +75,33 @@ namespace Xenko.DebugDrawer
         {
             if(shape == null) throw new ArgumentNullException(nameof(shape));
 
-            lock (_geometryKey)
+            lock (_shapes)
             {
                 _shapes.Add(shape);
-                UpdateMesh();
+                IsModified = true;
             }
         }
         
-        public void Remove(AShape shape)
+        public bool Remove(AShape shape)
         {
             if (shape == null) throw new ArgumentNullException(nameof(shape));
 
-            lock (_geometryKey)
+            lock (_shapes)
             {
-                _shapes.Remove(shape);
-                UpdateMesh();
+                var removed = _shapes.Remove(shape);
+                if (removed)
+                {
+                    IsModified = true;
+                }
+
+                return removed;
             }
         }
 
         public void UpdateMesh()
         {
+            if (!IsModified) return;
+
             List<VertexPositionColorTexture> vertices = new List<VertexPositionColorTexture>();
             var indices = new LinkedList<int>();
             lock (_shapes)
@@ -110,6 +117,7 @@ namespace Xenko.DebugDrawer
 
             _vertexBuffer.SetData(_graphicsContext.CommandList, vertices.ToArray());
             _indexBuffer.SetData(_graphicsContext.CommandList, indices.ToArray());
+            IsModified = false;
         }
 
         private int OptionalInsert(Vector3 point, IList<VertexPositionColorTexture> verticeList)
@@ -128,7 +136,7 @@ namespace Xenko.DebugDrawer
 
         public bool Contains(AShape aShape)
         {
-            lock (_geometryKey)
+            lock (_shapes)
             {
                 return _shapes.Contains(aShape);
             }

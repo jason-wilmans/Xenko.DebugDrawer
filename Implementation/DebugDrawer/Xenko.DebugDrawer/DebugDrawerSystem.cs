@@ -40,6 +40,23 @@ namespace Xenko.DebugDrawer
             geometries.Add(shape);
         }
 
+        public override bool BeginDraw()
+        {
+            Console.WriteLine("============== Updating meshes ===========");
+
+            bool hasDrawn = false;
+            foreach (var shapeCollection in _shapeCollections.Values)
+            {
+                if (shapeCollection.IsModified)
+                {
+                    hasDrawn |= shapeCollection.IsModified;
+                    shapeCollection.UpdateMesh();
+                }
+            }
+
+            return hasDrawn && base.BeginDraw();
+        }
+
         private ShapeCollection EnsureEntities(Color color)
         {
             if (_rootEntity == null)
@@ -67,18 +84,19 @@ namespace Xenko.DebugDrawer
             EnsureEntities(shape.Color);
 
             var collection = _shapeCollections[shape.Color];
-            if (!collection.Contains(shape))
-            {
-                foreach (var otherCollection in _shapeCollections)
-                {
-                    otherCollection.Value.Remove(shape);
-                }
+            collection.IsModified = true;
+            //if (!collection.Contains(shape))
+            //{
+            //    foreach (var otherCollection in _shapeCollections)
+            //    {
+            //        if (otherCollection.Value.Remove(shape))
+            //        {
+            //            otherCollection.Value.IsModified = true;
+            //        }
+            //    }
 
-                collection.Add(shape);
-                return;
-            }
-
-            collection.UpdateMesh();
+            //    collection.Add(shape);
+            //}
         }
     }
 }
