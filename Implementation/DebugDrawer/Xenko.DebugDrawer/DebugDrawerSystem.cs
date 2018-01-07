@@ -42,19 +42,19 @@ namespace Xenko.DebugDrawer
 
         public override bool BeginDraw()
         {
-            Console.WriteLine("============== Updating meshes ===========");
-
-            bool hasDrawn = false;
+            //bool hasDrawn = false;
             foreach (var shapeCollection in _shapeCollections.Values)
             {
-                if (shapeCollection.IsModified)
-                {
-                    hasDrawn |= shapeCollection.IsModified;
-                    shapeCollection.UpdateMesh();
-                }
+                //if (shapeCollection.IsModified)
+                //{
+                //    hasDrawn |= shapeCollection.IsModified;
+                shapeCollection.UpdateMesh();
+            //}
             }
 
-            return hasDrawn && base.BeginDraw();
+            return true;
+
+            //return hasDrawn && base.BeginDraw();
         }
 
         private ShapeCollection EnsureEntities(Color color)
@@ -81,10 +81,10 @@ namespace Xenko.DebugDrawer
 
         public void OnPropertyChanged(AShape shape)
         {
-            EnsureEntities(shape.Color);
+            //EnsureEntities(shape.Color);
 
-            var collection = _shapeCollections[shape.Color];
-            collection.IsModified = true;
+            //var collection = _shapeCollections[shape.Color];
+            //collection.IsModified = true;
             //if (!collection.Contains(shape))
             //{
             //    foreach (var otherCollection in _shapeCollections)

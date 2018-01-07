@@ -24,7 +24,6 @@ namespace Xenko.DebugDrawer
         private Buffer _indexBuffer;
 
         public Entity Entity { get; set; }
-        public bool IsModified { get; set; }
 
         public ShapeCollection(Color color, GraphicsDevice graphicsDevice, GraphicsContext graphicsContext)
         {
@@ -78,7 +77,6 @@ namespace Xenko.DebugDrawer
             lock (_shapes)
             {
                 _shapes.Add(shape);
-                IsModified = true;
             }
         }
         
@@ -88,20 +86,12 @@ namespace Xenko.DebugDrawer
 
             lock (_shapes)
             {
-                var removed = _shapes.Remove(shape);
-                if (removed)
-                {
-                    IsModified = true;
-                }
-
-                return removed;
+                return _shapes.Remove(shape);
             }
         }
 
         public void UpdateMesh()
         {
-            if (!IsModified) return;
-
             List<VertexPositionColorTexture> vertices = new List<VertexPositionColorTexture>();
             var indices = new LinkedList<int>();
             lock (_shapes)
@@ -117,7 +107,6 @@ namespace Xenko.DebugDrawer
 
             _vertexBuffer.SetData(_graphicsContext.CommandList, vertices.ToArray());
             _indexBuffer.SetData(_graphicsContext.CommandList, indices.ToArray());
-            IsModified = false;
         }
 
         private int OptionalInsert(Vector3 point, IList<VertexPositionColorTexture> verticeList)

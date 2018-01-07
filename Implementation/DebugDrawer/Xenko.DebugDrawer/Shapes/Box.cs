@@ -66,33 +66,33 @@ namespace Xenko.DebugDrawer.Shapes
                 new Vector3(_transform.Position.X + xHalf, _transform.Position.Y - yHalf, _transform.Position.Z - zHalf),
                 new Vector3(_transform.Position.X - xHalf, _transform.Position.Y - yHalf, _transform.Position.Z - zHalf), Color);
 
-            // top
-            _lines[4] = new Line(
-                new Vector3(_transform.Position.X - xHalf, _transform.Position.Y + yHalf, _transform.Position.Z - zHalf),
-                new Vector3(_transform.Position.X - xHalf, _transform.Position.Y + yHalf, _transform.Position.Z + zHalf), Color);
-            _lines[5] = new Line(
-                new Vector3(_transform.Position.X - xHalf, _transform.Position.Y + yHalf, _transform.Position.Z + zHalf),
-                new Vector3(_transform.Position.X + xHalf, _transform.Position.Y + yHalf, _transform.Position.Z + zHalf), Color);
-            _lines[6] = new Line(
-                new Vector3(_transform.Position.X + xHalf, _transform.Position.Y + yHalf, _transform.Position.Z + zHalf),
-                new Vector3(_transform.Position.X + xHalf, _transform.Position.Y + yHalf, _transform.Position.Z - zHalf), Color);
-            _lines[7] = new Line(
-                new Vector3(_transform.Position.X + xHalf, _transform.Position.Y + yHalf, _transform.Position.Z - zHalf),
-                new Vector3(_transform.Position.X - xHalf, _transform.Position.Y + yHalf, _transform.Position.Z - zHalf), Color);
-
             // vertical
-            _lines[8] = new Line(
+            _lines[4] = new Line(
                 new Vector3(_transform.Position.X - xHalf, _transform.Position.Y - yHalf, _transform.Position.Z - zHalf),
                 new Vector3(_transform.Position.X - xHalf, _transform.Position.Y + yHalf, _transform.Position.Z - zHalf), Color);
-            _lines[9] = new Line(
+            _lines[5] = new Line(
                 new Vector3(_transform.Position.X - xHalf, _transform.Position.Y - yHalf, _transform.Position.Z + zHalf),
                 new Vector3(_transform.Position.X - xHalf, _transform.Position.Y + yHalf, _transform.Position.Z + zHalf), Color);
-            _lines[10] = new Line(
+            _lines[6] = new Line(
                 new Vector3(_transform.Position.X + xHalf, _transform.Position.Y - yHalf, _transform.Position.Z - zHalf),
                 new Vector3(_transform.Position.X + xHalf, _transform.Position.Y + yHalf, _transform.Position.Z - zHalf), Color);
-            _lines[11] = new Line(
+            _lines[7] = new Line(
                 new Vector3(_transform.Position.X + xHalf, _transform.Position.Y - yHalf, _transform.Position.Z + zHalf),
                 new Vector3(_transform.Position.X + xHalf, _transform.Position.Y + yHalf, _transform.Position.Z + zHalf), Color);
+
+            // top
+            _lines[8] = new Line(
+                new Vector3(_transform.Position.X - xHalf, _transform.Position.Y + yHalf, _transform.Position.Z - zHalf),
+                new Vector3(_transform.Position.X - xHalf, _transform.Position.Y + yHalf, _transform.Position.Z + zHalf), Color);
+            _lines[9] = new Line(
+                new Vector3(_transform.Position.X - xHalf, _transform.Position.Y + yHalf, _transform.Position.Z + zHalf),
+                new Vector3(_transform.Position.X + xHalf, _transform.Position.Y + yHalf, _transform.Position.Z + zHalf), Color);
+            _lines[10] = new Line(
+                new Vector3(_transform.Position.X + xHalf, _transform.Position.Y + yHalf, _transform.Position.Z + zHalf),
+                new Vector3(_transform.Position.X + xHalf, _transform.Position.Y + yHalf, _transform.Position.Z - zHalf), Color);
+            _lines[11] = new Line(
+                new Vector3(_transform.Position.X + xHalf, _transform.Position.Y + yHalf, _transform.Position.Z - zHalf),
+                new Vector3(_transform.Position.X - xHalf, _transform.Position.Y + yHalf, _transform.Position.Z - zHalf), Color);
 
             NotifyPropertyChanged();
         }
