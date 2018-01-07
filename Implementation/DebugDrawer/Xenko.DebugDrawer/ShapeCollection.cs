@@ -55,7 +55,7 @@ namespace Xenko.DebugDrawer
                                     _vertexArray.Length * VertexPositionColorTexture.Layout.CalculateSize())
                             },
                             IndexBuffer = new IndexBufferBinding(_indexBuffer, true, _indexArray.Length * sizeof(int)),
-                            DrawCount = _vertexArray.Length
+                            DrawCount = 1
                         }
                     }
                 }
