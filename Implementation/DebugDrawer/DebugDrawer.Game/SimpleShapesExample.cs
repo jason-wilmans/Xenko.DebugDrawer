@@ -23,10 +23,10 @@ namespace DebugDrawer
             _box = new Box(new Vector3(1.5f, .5f, 0), Vector3.One, Color.Chartreuse);
             _debug.Add(_box);
 
-            _line1 = new Line(new Vector3(0, 1, 0), new Vector3(0, 1, 1), Color.OrangeRed);
+            _line1 = new Line(new Vector3(0, 1, 0), new Vector3(0, 1, 1), Color.Red);
             _debug.Add(_line1);
 
-            _box2 = new Box(new Vector3(-1.5f, .5f, 0), Vector3.One, Color.OrangeRed);
+            _box2 = new Box(new Vector3(-1.5f, .5f, 0), Vector3.One, Color.Red);
             _debug.Add(_box2);
         }
 

@@ -9,7 +9,7 @@ using Xenko.DebugDrawer.Shapes;
 
 namespace Xenko.DebugDrawer
 {
-    public class DebugDrawerSystem : GameSystemBase, IShapePropetyChangedHandler
+    public class DebugDrawerSystem : GameSystemBase
     {
         public static DebugDrawerSystem Instance;
 
@@ -34,27 +34,18 @@ namespace Xenko.DebugDrawer
             if (Equals(shape, default(T)))
                 throw new ArgumentException(nameof(shape));
 
-            shape.ChangeHandler = this;
-
             var geometries = EnsureEntities(shape.Color);
             geometries.Add(shape);
         }
 
         public override bool BeginDraw()
         {
-            //bool hasDrawn = false;
             foreach (var shapeCollection in _shapeCollections.Values)
             {
-                //if (shapeCollection.IsModified)
-                //{
-                //    hasDrawn |= shapeCollection.IsModified;
                 shapeCollection.UpdateMesh();
-            //}
             }
 
             return true;
-
-            //return hasDrawn && base.BeginDraw();
         }
 
         private ShapeCollection EnsureEntities(Color color)
@@ -77,26 +68,6 @@ namespace Xenko.DebugDrawer
             }
 
             return _shapeCollections[color];
-        }
-
-        public void OnPropertyChanged(AShape shape)
-        {
-            //EnsureEntities(shape.Color);
-
-            //var collection = _shapeCollections[shape.Color];
-            //collection.IsModified = true;
-            //if (!collection.Contains(shape))
-            //{
-            //    foreach (var otherCollection in _shapeCollections)
-            //    {
-            //        if (otherCollection.Value.Remove(shape))
-            //        {
-            //            otherCollection.Value.IsModified = true;
-            //        }
-            //    }
-
-            //    collection.Add(shape);
-            //}
         }
     }
 }
