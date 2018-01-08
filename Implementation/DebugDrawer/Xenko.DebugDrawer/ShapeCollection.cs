@@ -17,7 +17,6 @@ namespace Xenko.DebugDrawer
         private readonly GraphicsDevice _graphicsDevice;
         private readonly GraphicsContext _graphicsContext;
         private readonly ISet<AShape> _shapes;
-        private Material _material;
         private readonly VertexPositionColorTexture[] _vertexArray;
         private readonly int[] _indexArray;
         private Buffer _vertexBuffer;
@@ -60,10 +59,8 @@ namespace Xenko.DebugDrawer
                             DrawCount = _vertexArray.Length
                         }
                     }
-                }
+                }, Materials = { Materials.CreateDebugMaterial(color, true, graphicsDevice) }
             };
-            _material = Materials.CreateDebugMaterial(color, true, graphicsDevice);
-            model.Materials.Add(_material);
 
             Entity = new Entity
             {
@@ -137,6 +134,12 @@ namespace Xenko.DebugDrawer
             {
                 return _shapes.Contains(aShape);
             }
+        }
+
+        ~ShapeCollection()
+        {
+            _vertexBuffer.Dispose();
+            _indexBuffer.Dispose();
         }
     }
 }

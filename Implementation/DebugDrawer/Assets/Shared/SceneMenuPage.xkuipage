@@ -1,0 +1,50 @@
+!UIPageAsset
+Id: 1b61a8c2-d8d5-4149-afac-c2778ca9ca7c
+SerializedVersion: {Xenko: 2.1.0.1}
+Tags: []
+Design:
+    Resolution: {X: 1280.0, Y: 720.0, Z: 1000.0}
+Hierarchy:
+    RootParts:
+        - !Grid ref!! 968b4a86-21b6-460f-9f9d-b5ea5c0c00cb
+    Parts:
+        -   UIElement: !TextBlock
+                Id: 18f2578c-f549-469e-86d5-7ec414c058d1
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                HorizontalAlignment: Center
+                Margin: {}
+                MaximumWidth: 3.40282347E+38
+                MaximumHeight: 3.40282347E+38
+                MaximumDepth: 3.40282347E+38
+                Text: Examples
+                Font: d5a7c244-fca9-442d-a29c-7d37d0d52a0a:BEBAS NEUE
+                TextSize: 26.0
+                TextColor: {R: 240, G: 240, B: 240, A: 255}
+                TextAlignment: Center
+        -   UIElement: !Grid
+                Id: 968b4a86-21b6-460f-9f9d-b5ea5c0c00cb
+                DependencyProperties: {}
+                BackgroundColor: {R: 75, G: 75, B: 75, A: 164}
+                HorizontalAlignment: Left
+                Margin: {}
+                MaximumWidth: 3.40282347E+38
+                MaximumHeight: 3.40282347E+38
+                MaximumDepth: 3.40282347E+38
+                Children:
+                    12e5b4074094dd57851e1ad7e64d62bc: !StackPanel ref!! b2510f0a-ebf5-4969-a658-8ae85513128c
+                RowDefinitions: {}
+                ColumnDefinitions: {}
+                LayerDefinitions: {}
+        -   UIElement: !StackPanel
+                Id: b2510f0a-ebf5-4969-a658-8ae85513128c
+                DependencyProperties: {}
+                BackgroundColor: {R: 0, G: 0, B: 0, A: 0}
+                HorizontalAlignment: Left
+                Margin: {Left: 10.0, Top: 10.0, Right: 10.0, Bottom: 10.0}
+                MaximumWidth: 3.40282347E+38
+                MaximumHeight: 3.40282347E+38
+                MaximumDepth: 3.40282347E+38
+                Name: SceneMenu
+                Children:
+                    80ebc8628fc0b68ea04b2a8bdcd96adb: !TextBlock ref!! 18f2578c-f549-469e-86d5-7ec414c058d1

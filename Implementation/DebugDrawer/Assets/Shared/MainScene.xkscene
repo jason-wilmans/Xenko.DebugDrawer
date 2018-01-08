@@ -1,43 +1,48 @@
 !SceneAsset
-Id: dd1eced7-18ec-44f4-a4d6-3fdae594d99d
+Id: 17e3ee71-5121-46c0-9d03-886f5d417f97
 SerializedVersion: {Xenko: 2.1.0.1}
 Tags: []
 ChildrenIds: []
 Offset: {X: 0.0, Y: 0.0, Z: 0.0}
 Hierarchy:
     RootParts:
-        - ref!! a8b9999c-9ea1-406e-b458-1ee8c0fe1d2b
-        - ref!! 3f73884c-f720-4275-a19a-199b4c7ea8ae
+        - ref!! 43805b1f-2943-4a5b-bc82-2ea72f4ed064
+        - ref!! 361a8840-d651-41ae-b5dd-80713a5ff2af
     Parts:
         -   Entity:
-                Id: 3f73884c-f720-4275-a19a-199b4c7ea8ae
-                Name: TestScripts
+                Id: 361a8840-d651-41ae-b5dd-80713a5ff2af
+                Name: UI
                 Components:
-                    aa6f2059c1bfe6af93c4309634a858b3: !TransformComponent
-                        Id: a73380de-475c-44dc-9374-02c6549d9a2c
-                        Position: {X: 0.0, Y: 2.0, Z: 0.0}
+                    52f8b4933cce2e07c5308c663d8dd882: !TransformComponent
+                        Id: d472400d-a155-4bc1-b556-200120923a19
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
                         Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
                         Scale: {X: 1.0, Y: 1.0, Z: 1.0}
                         Children: {}
-                    19b4ec991a9258e94ff6bee4fc639848: !DebugDrawer.SimpleShapesExample,DebugDrawer.Game
-                        Id: c8edb6fb-7864-4227-9a94-e7f4fa105f61
+                    6d690c27af88e09d2d00676933c96e44: !UIComponent
+                        Id: 5eff833c-0172-4219-ac47-3cce1a9ec6e2
+                        Page: 1b61a8c2-d8d5-4149-afac-c2778ca9ca7c:SceneMenuPage
+                        Resolution: {X: 1280.0, Y: 720.0, Z: 1000.0}
+                        Size: {X: 1.0, Y: 1.0, Z: 1.0}
+                    d07e269aed411d862aa6844744bb21cd: !DebugDrawer.SceneSelectorComponent,DebugDrawer.Game
+                        Id: 9416e518-e9f0-4150-a066-8c9092690879
         -   Entity:
-                Id: a8b9999c-9ea1-406e-b458-1ee8c0fe1d2b
+                Id: 43805b1f-2943-4a5b-bc82-2ea72f4ed064
                 Name: Camera
                 Components:
                     6fac62ebdcebe8cc7b170909ca01e5bd: !TransformComponent
-                        Id: edd49ce5-10a6-45fc-a6c1-fdfb348326dd
+                        Id: f070d5fe-27f6-4ddd-946e-7dc681701f03
                         Position: {X: 2.6, Y: 0.6, Z: -1.0}
                         Rotation: {X: 0.0, Y: 0.829037547, Z: 0.0, W: 0.5591929}
                         Scale: {X: 1.0, Y: 1.0, Z: 1.0}
                         Children: {}
                     3fad873b4f886de72b25382398645442: !CameraComponent
-                        Id: 3a8f3825-c933-4c89-804e-17c8323f07ae
+                        Id: a49ed6bc-dd05-40aa-a92b-86aa87281542
                         Name: null
                         Projection: Perspective
                         Slot: b06dbff5-9365-46a8-9983-4f0dd4899709
                     d89d367f95775d7d2ebd46ff60014c27: !DebugDrawer.BasicCameraController,DebugDrawer.Game
-                        Id: 1fdd5bf9-5868-40e6-97bb-aa0bef4f36a4
+                        Id: ca4af147-cada-408d-8834-77a9a620278b
                         KeyboardMovementSpeed: {X: 5.0, Y: 5.0, Z: 5.0}
                         TouchMovementSpeed: {X: 40.0, Y: 40.0, Z: 20.0}
                         SpeedFactor: 5.0

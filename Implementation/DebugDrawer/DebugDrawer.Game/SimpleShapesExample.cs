@@ -36,7 +36,7 @@ namespace DebugDrawer
         public override void Update()
         {
             float sin = (float)Math.Sin(Game.PlayTime.TotalTime.TotalSeconds);
-            float cos = (float)Math.Sin(Game.PlayTime.TotalTime.TotalSeconds * 4);
+            float cos = (float)Math.Cos(Game.PlayTime.TotalTime.TotalSeconds * 4);
             var delta = Vector3.UnitX * sin * 0.01f;
             _line1.Start += delta;
             _line1.End += delta;

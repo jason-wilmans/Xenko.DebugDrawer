@@ -69,5 +69,15 @@ namespace Xenko.DebugDrawer
 
             return _shapeCollections[color];
         }
+
+        public void Clear()
+        {
+            foreach (var shapeCollection in _shapeCollections.Values)
+            {
+                _rootEntity.RemoveChild(shapeCollection.Entity);
+            }
+
+            _shapeCollections.Clear();
+        }
     }
 }

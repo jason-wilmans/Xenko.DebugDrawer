@@ -41,4 +41,5 @@ ExplicitFolders: []
 Bundles: []
 TemplateFolders: []
 RootAssets:
-    - 6f8baac0-bad1-468a-8ac3-36fe118d3a4d:DebugMaterial
+    - 71b8b37b-04c0-433b-81da-4473ccfa3cba:Examples/ColorChangeTest
+    - dd1eced7-18ec-44f4-a4d6-3fdae594d99d:Examples/SimpleShapes

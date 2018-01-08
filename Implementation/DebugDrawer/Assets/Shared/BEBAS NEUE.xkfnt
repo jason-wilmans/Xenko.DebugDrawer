@@ -1,0 +1,12 @@
+!SpriteFont
+Id: d5a7c244-fca9-442d-a29c-7d37d0d52a0a
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+FontSource: !FileFontProvider
+    Source: ../../../../Assets/bebas_neue/BebasNeue.otf
+FontType: !SignedDistanceFieldSpriteFontType
+    CharacterSet: null
+    CharacterRegions:
+        5bbee1ef03e40f4a4c9028a1d6265f25:
+            Start: ' '
+            End: "\x7F"
