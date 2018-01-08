@@ -22,6 +22,8 @@ namespace Xenko.DebugDrawer
         private readonly int[] _indexArray;
         private Buffer _vertexBuffer;
         private Buffer _indexBuffer;
+        private readonly VertexPositionColorTexture[] _vertices = new VertexPositionColorTexture[1024];
+        private readonly int[] _indices = new int[1024];
 
         public Entity Entity { get; set; }
 
@@ -32,8 +34,8 @@ namespace Xenko.DebugDrawer
             _graphicsContext = graphicsContext;
             _shapes = new HashSet<AShape>();
 
-            _vertexArray = new VertexPositionColorTexture[65535];
-            _indexArray = new int[65535];
+            _vertexArray = new VertexPositionColorTexture[1024];
+            _indexArray = new int[1024];
             InitEntity(color, graphicsDevice);
         }
 
@@ -105,8 +107,14 @@ namespace Xenko.DebugDrawer
                 }
             }
 
-            _vertexBuffer.SetData(_graphicsContext.CommandList, vertices.ToArray());
-            _indexBuffer.SetData(_graphicsContext.CommandList, indices.ToArray());
+            _vertexArray.CopyTo(_vertices, 0);
+            _indexArray.CopyTo(_indices, 0);
+
+            vertices.CopyTo(_vertices, 0);
+            indices.CopyTo(_indices, 0);
+
+            _vertexBuffer.SetData(_graphicsContext.CommandList, _vertices.ToArray());
+            _indexBuffer.SetData(_graphicsContext.CommandList, _indices.ToArray());
         }
 
         private int OptionalInsert(Vector3 point, IList<VertexPositionColorTexture> verticeList)

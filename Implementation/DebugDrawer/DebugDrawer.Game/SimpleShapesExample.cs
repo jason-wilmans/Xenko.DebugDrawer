@@ -23,11 +23,14 @@ namespace DebugDrawer
             _box = new Box(new Vector3(1.5f, .5f, 0), Vector3.One, Color.Chartreuse);
             _debug.Add(_box);
 
-            _line1 = new Line(new Vector3(0, 1, 0), new Vector3(0, 1, 1), Color.Red);
-            _debug.Add(_line1);
-
             _box2 = new Box(new Vector3(-1.5f, .5f, 0), Vector3.One, Color.Red);
             _debug.Add(_box2);
+
+            _line1 = new Line(new Vector3(0, 1, 0), new Vector3(0, 1, 1), Color.Yellow);
+            _debug.Add(_line1);
+
+            _line2 = new Line(new Vector3(.25f, 1, 0), new Vector3(0, 1, 1), Color.Purple);
+            _debug.Add(_line2);
         }
 
         public override void Update()
@@ -37,6 +40,7 @@ namespace DebugDrawer
             var delta = Vector3.UnitX * sin * 0.01f;
             _line1.Start += delta;
             _line1.End += delta;
+            _line2.Start += delta;
 
             _box.Scale = Vector3.One * .25f + Vector3.One * sin * .125f;
             _box2.Scale = Vector3.One * .25f + Vector3.One * cos * .125f;
