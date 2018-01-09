@@ -59,9 +59,7 @@ namespace Xenko.DebugDrawer
                 _sceneSystem.SceneInstance.RootScene.Entities.Add(_rootEntity);
             }
 
-            EnsureCollection(color);
-
-            return _shapeCollections[color];
+            return EnsureCollection(color);
         }
 
         private ShapeCollection EnsureCollection(Color color)
@@ -80,7 +78,7 @@ namespace Xenko.DebugDrawer
         {
             if(shape == null) throw new ArgumentNullException(nameof(shape));
 
-            ShapeCollection shapeCollection = EnsureCollection(shape.Color);
+            ShapeCollection shapeCollection = EnsureEntities(shape.Color);
             shapeCollection.Add(shape);
         }
 

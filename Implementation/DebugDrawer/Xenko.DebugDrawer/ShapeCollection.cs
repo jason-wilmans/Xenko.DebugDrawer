@@ -77,6 +77,8 @@ namespace Xenko.DebugDrawer
         {
             if(shape == null) throw new ArgumentNullException(nameof(shape));
 
+            IsModified = true;
+
             shape.ChangeHandler = this;
 
             lock (_shapes)
@@ -88,6 +90,8 @@ namespace Xenko.DebugDrawer
         public bool Remove(AShape shape)
         {
             if (shape == null) throw new ArgumentNullException(nameof(shape));
+
+            IsModified = true;
 
             lock (_shapes)
             {

@@ -16,18 +16,25 @@ namespace DebugDrawer
         {
             var debug = DebugDrawerSystem.Instance;
 
-            _box1 = new Box(new Vector3(-.5f, 0, 0), new Vector3(0.3f), Color.CadetBlue);
+            _box1 = new Box(new Vector3(-.5f, 0, 0), new Vector3(0.3f), Color.White);
             debug.Add(_box1);
 
-            _box2 = new Box(new Vector3(.5f, 0, 0), new Vector3(0.3f), Color.CadetBlue);
+            _box2 = new Box(new Vector3(.5f, 0, 0), new Vector3(0.3f), Color.Orange);
             debug.Add(_box2);
 
             while (Game.IsRunning)
             {
-                await Script.NextFrame();
+                await Task.Delay(TimeSpan.FromSeconds(5));
 
-                //_box2.Color = _box2.Color == Color.Orange ? Color.White : Color.Orange;
+                ToggleColor(_box1);
+                ToggleColor(_box2);
+                
             }
+        }
+
+        private void ToggleColor(AShape shape)
+        {
+            shape.Color = shape.Color == Color.Orange ? Color.White : Color.Orange;
         }
     }
 }

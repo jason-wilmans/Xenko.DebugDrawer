@@ -25,7 +25,7 @@ namespace DebugDrawer
             _menuItems = new[]
             {
                 new MenuItems("Simple Shapes", "Examples/SimpleShapes", true),
-                new MenuItems("Color Change", "Examples/ColorChangeTest", false)
+                new MenuItems("Color Change", "Examples/ColorChange", false)
             };
 
             foreach (var menuItem in _menuItems) _menuPanel.Children.Add(CreateMenuItem(menuItem));

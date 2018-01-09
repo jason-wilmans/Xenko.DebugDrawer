@@ -7,6 +7,7 @@ namespace Xenko.DebugDrawer.Shapes
     public abstract class AShape
     {
         private IShapePropetyChangedHandler _changeHandler;
+        private Color _color;
 
         internal IShapePropetyChangedHandler ChangeHandler
         {
@@ -14,7 +15,15 @@ namespace Xenko.DebugDrawer.Shapes
             set { _changeHandler = value; }
         }
 
-        public virtual Color Color { get; set; }
+        public virtual Color Color
+        {
+            get { return _color; }
+            set
+            {
+                _color = value;
+                NotifyPropertyChanged();
+            }
+        }
 
         public abstract IEnumerable<Line> Lines { get; }
 
