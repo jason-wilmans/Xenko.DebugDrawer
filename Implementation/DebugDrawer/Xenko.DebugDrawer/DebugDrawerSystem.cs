@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using SiliconStudio.Core.Mathematics;
 using SiliconStudio.Xenko.Engine;
 using SiliconStudio.Xenko.Games;
-using SiliconStudio.Xenko.Rendering;
 using Xenko.DebugDrawer.Shapes;
 
 namespace Xenko.DebugDrawer
@@ -34,8 +33,8 @@ namespace Xenko.DebugDrawer
             if (Equals(shape, default(T)))
                 throw new ArgumentException(nameof(shape));
 
-            var geometries = EnsureEntities(shape.Color);
-            geometries.Add(shape);
+            var shapeCollection = EnsureEntities(shape.Color);
+            shapeCollection.Add(shape);
         }
 
         public override bool BeginDraw()
@@ -60,24 +59,44 @@ namespace Xenko.DebugDrawer
                 _sceneSystem.SceneInstance.RootScene.Entities.Add(_rootEntity);
             }
 
-            if (!_shapeCollections.ContainsKey(color))
-            {
-                var shapeCollection = new ShapeCollection(color, GraphicsDevice, _game.GraphicsContext);
-                _shapeCollections[color] = shapeCollection;
-                _rootEntity.AddChild(shapeCollection.Entity);
-            }
+            EnsureCollection(color);
 
             return _shapeCollections[color];
+        }
+
+        private ShapeCollection EnsureCollection(Color color)
+        {
+            if (_shapeCollections.TryGetValue(color, out var shapeCollection)) return shapeCollection;
+
+            shapeCollection = new ShapeCollection(color, GraphicsDevice, _game.GraphicsContext);
+            shapeCollection.ColorChanged += OnColorChanged;
+            _shapeCollections[color] = shapeCollection;
+            _rootEntity.AddChild(shapeCollection.Entity);
+
+            return shapeCollection;
+        }
+
+        private void OnColorChanged(AShape shape)
+        {
+            if(shape == null) throw new ArgumentNullException(nameof(shape));
+
+            ShapeCollection shapeCollection = EnsureCollection(shape.Color);
+            shapeCollection.Add(shape);
         }
 
         public void Clear()
         {
             foreach (var shapeCollection in _shapeCollections.Values)
             {
-                _rootEntity.RemoveChild(shapeCollection.Entity);
+                Delete(shapeCollection);
             }
+        }
 
-            _shapeCollections.Clear();
+        private void Delete(ShapeCollection shapeCollection)
+        {
+            _rootEntity.RemoveChild(shapeCollection.Entity);
+            shapeCollection.ColorChanged -= OnColorChanged;
+            _shapeCollections.Remove(shapeCollection.Color);
         }
     }
 }

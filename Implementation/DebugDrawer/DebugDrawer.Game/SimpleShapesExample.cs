@@ -29,7 +29,7 @@ namespace DebugDrawer
             _line1 = new Line(new Vector3(0, 1, 0), new Vector3(0, 1, 1), Color.Yellow);
             _debug.Add(_line1);
 
-            _line2 = new Line(new Vector3(.25f, 1, 0), new Vector3(0, 1, 1), Color.Purple);
+            _line2 = new Line(new Vector3(.25f, 1, 0), new Vector3(0, 1, 1), Color.HotPink);
             _debug.Add(_line2);
         }
 

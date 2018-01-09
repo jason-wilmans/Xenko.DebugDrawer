@@ -65,9 +65,18 @@ namespace DebugDrawer
             {
                 var menuItem = _menuItems[i];
                 menuItem.IsSelected = menuItem.Name.Equals(name);
-                ((_menuPanel.Children[i + 1] as Border).Content as TextBlock).TextColor =
-                    menuItem.IsSelected ? Color.Aquamarine : Color.White;
+                var textColor = menuItem.IsSelected ? Color.Aquamarine : Color.White;
+                ((_menuPanel.Children[i + 1] as Border).Content as TextBlock).TextColor = textColor;
+                Unload(menuItem);
                 if (menuItem.IsSelected) LoadScene(menuItem);
+            }
+        }
+
+        private void Unload(MenuItems menuItem)
+        {
+            if (Content.IsLoaded(menuItem.URL))
+            {
+                Content.Unload(menuItem.URL);
             }
         }
 
@@ -75,12 +84,7 @@ namespace DebugDrawer
         {
             DebugDrawerSystem.Instance.Clear();
             SceneSystem.SceneInstance.RootScene.Children.Clear();
-            Scene scene;
-            if (!Content.IsLoaded(menuItem.URL))
-                scene = Content.Load<Scene>(menuItem.URL);
-            else
-                scene = Content.Get<Scene>(menuItem.URL);
-
+            Scene scene = Content.Load<Scene>(menuItem.URL);
             SceneSystem.SceneInstance.RootScene.Children.Add(scene);
         }
     }

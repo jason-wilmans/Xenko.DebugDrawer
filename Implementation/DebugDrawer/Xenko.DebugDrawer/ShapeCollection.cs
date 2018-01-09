@@ -10,9 +10,8 @@ using Buffer = SiliconStudio.Xenko.Graphics.Buffer;
 
 namespace Xenko.DebugDrawer
 {
-    internal class ShapeCollection
+    internal class ShapeCollection : IShapePropetyChangedHandler
     {
-        private readonly Color _color;
         
         private readonly GraphicsDevice _graphicsDevice;
         private readonly GraphicsContext _graphicsContext;
@@ -26,9 +25,14 @@ namespace Xenko.DebugDrawer
 
         public Entity Entity { get; set; }
 
+        public bool IsModified { get; set; }
+        public Color Color { get; private set; }
+
+        public event Action<AShape> ColorChanged;
+
         public ShapeCollection(Color color, GraphicsDevice graphicsDevice, GraphicsContext graphicsContext)
         {
-            _color = color;
+            Color = color;
             _graphicsDevice = graphicsDevice;
             _graphicsContext = graphicsContext;
             _shapes = new HashSet<AShape>();
@@ -73,6 +77,8 @@ namespace Xenko.DebugDrawer
         {
             if(shape == null) throw new ArgumentNullException(nameof(shape));
 
+            shape.ChangeHandler = this;
+
             lock (_shapes)
             {
                 _shapes.Add(shape);
@@ -91,6 +97,8 @@ namespace Xenko.DebugDrawer
 
         public void UpdateMesh()
         {
+            if(!IsModified) return;
+
             List<VertexPositionColorTexture> vertices = new List<VertexPositionColorTexture>();
             var indices = new LinkedList<int>();
             lock (_shapes)
@@ -112,11 +120,13 @@ namespace Xenko.DebugDrawer
 
             _vertexBuffer.SetData(_graphicsContext.CommandList, _vertices.ToArray());
             _indexBuffer.SetData(_graphicsContext.CommandList, _indices.ToArray());
+
+            IsModified = false;
         }
 
         private int OptionalInsert(Vector3 point, IList<VertexPositionColorTexture> verticeList)
         {
-            var vertex = new VertexPositionColorTexture(point, _color, Vector2.Zero);
+            var vertex = new VertexPositionColorTexture(point, Color, Vector2.Zero);
             int index = verticeList.IndexOf(vertex);
             if (index >= 0)
             {
@@ -140,6 +150,19 @@ namespace Xenko.DebugDrawer
         {
             _vertexBuffer.Dispose();
             _indexBuffer.Dispose();
+        }
+
+        public void OnPropertyChanged(AShape shape)
+        {
+            if (shape.Color != Color)
+            {
+                Remove(shape);
+                ColorChanged?.Invoke(shape);
+            }
+            else
+            {
+                IsModified = true;
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using SiliconStudio.Core.Mathematics;
 using SiliconStudio.Xenko.Engine;
 using Xenko.DebugDrawer;
@@ -6,30 +7,27 @@ using Xenko.DebugDrawer.Shapes;
 
 namespace DebugDrawer
 {
-    public class ColorChangeExample : SyncScript
+    public class ColorChangeExample : AsyncScript
     {
         private Box _box1;
         private Box _box2;
 
-        public override void Start()
+        public override async Task Execute()
         {
-            base.Start();
-
             var debug = DebugDrawerSystem.Instance;
 
-            _box1 = new Box(new Vector3(-.5f, 0, 0), new Vector3(0.3f), Color.Azure);
+            _box1 = new Box(new Vector3(-.5f, 0, 0), new Vector3(0.3f), Color.CadetBlue);
             debug.Add(_box1);
 
-            _box2 = new Box(new Vector3(.5f, 0, 0), new Vector3(0.3f), Color.Azure);
+            _box2 = new Box(new Vector3(.5f, 0, 0), new Vector3(0.3f), Color.CadetBlue);
             debug.Add(_box2);
-        }
 
-        public override void Update()
-        {
-            var sin = (float) Math.Sin(Game.PlayTime.TotalTime.TotalSeconds);
-            var cos = (float) Math.Cos(Game.PlayTime.TotalTime.TotalSeconds);
+            while (Game.IsRunning)
+            {
+                await Script.NextFrame();
 
-            if (Game.PlayTime.ElapsedTime.TotalSeconds > 5) _box1.Color = Color.Orange;
+                //_box2.Color = _box2.Color == Color.Orange ? Color.White : Color.Orange;
+            }
         }
     }
 }
