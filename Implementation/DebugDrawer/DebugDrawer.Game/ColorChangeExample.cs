@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
-using SiliconStudio.Core.Mathematics;
-using SiliconStudio.Xenko.Engine;
+using Xenko.Core.Mathematics;
 using Xenko.DebugDrawer;
 using Xenko.DebugDrawer.Shapes;
+using Xenko.Engine;
 
 namespace DebugDrawer
 {

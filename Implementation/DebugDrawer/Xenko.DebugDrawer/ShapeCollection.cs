@@ -1,12 +1,12 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using SiliconStudio.Core.Mathematics;
-using SiliconStudio.Xenko.Engine;
-using SiliconStudio.Xenko.Graphics;
-using SiliconStudio.Xenko.Rendering;
+using Xenko.Core.Mathematics;
+using Xenko.Engine;
+using Xenko.Graphics;
+using Xenko.Rendering;
 using Xenko.DebugDrawer.Shapes;
-using Buffer = SiliconStudio.Xenko.Graphics.Buffer;
+using Buffer = Xenko.Graphics.Buffer;
 
 namespace Xenko.DebugDrawer
 {

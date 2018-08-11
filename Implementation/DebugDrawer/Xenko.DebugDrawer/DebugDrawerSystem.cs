@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using SiliconStudio.Core.Mathematics;
-using SiliconStudio.Xenko.Engine;
-using SiliconStudio.Xenko.Games;
+using Xenko.Core.Mathematics;
+using Xenko.Engine;
+using Xenko.Games;
 using Xenko.DebugDrawer.Shapes;
 
 namespace Xenko.DebugDrawer

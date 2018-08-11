@@ -1,6 +1,6 @@
-﻿using System;
-using SiliconStudio.Core.Mathematics;
-using SiliconStudio.Xenko.Engine;
+using System;
+using Xenko.Core.Mathematics;
+using Xenko.Engine;
 using Xenko.DebugDrawer;
 using Xenko.DebugDrawer.Shapes;
 

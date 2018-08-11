@@ -9,7 +9,7 @@ Meta:
     RootNamespace: DebugDrawer
     Dependencies:
         -   Name: Xenko
-            Version: 2.1.1.1
+            Version: 3.0.0.3
             RootAssets: []
 LocalDependencies: []
 Profiles:
@@ -19,6 +19,7 @@ Profiles:
         AssetFolders:
             -   Path: Assets/Shared
             -   Path: DebugDrawer.Game/Effects
+        ResourceFolders: []
         OutputGroupDirectories: {}
         ProjectReferences:
             -   Id: 6bdab04c-b032-48ad-a587-7a7f4c0971f8
@@ -32,6 +33,7 @@ Profiles:
         InheritProfiles: []
         AssetFolders:
             -   Path: Assets/Windows
+        ResourceFolders: []
         OutputGroupDirectories: {}
         ProjectReferences:
             -   Id: 65979474-0507-4b4c-90b0-deae60a740f3

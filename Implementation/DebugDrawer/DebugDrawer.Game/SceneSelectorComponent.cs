@@ -1,10 +1,10 @@
-﻿using SiliconStudio.Core.Mathematics;
-using SiliconStudio.Xenko.Engine;
-using SiliconStudio.Xenko.Graphics;
-using SiliconStudio.Xenko.UI;
-using SiliconStudio.Xenko.UI.Controls;
-using SiliconStudio.Xenko.UI.Panels;
+using Xenko.Core.Mathematics;
 using Xenko.DebugDrawer;
+using Xenko.Engine;
+using Xenko.Graphics;
+using Xenko.UI;
+using Xenko.UI.Controls;
+using Xenko.UI.Panels;
 
 namespace DebugDrawer
 {
@@ -21,7 +21,7 @@ namespace DebugDrawer
 
             _page = Entity.Get<UIComponent>().Page;
             _menuPanel = _page.RootElement.FindName("SceneMenu") as StackPanel;
-            _font = Content.Load<SpriteFont>("BEBAS NEUE");
+            _font = Content.Load<SpriteFont>("Sansation");
             _menuItems = new[]
             {
                 new MenuItems("Simple Shapes", "Examples/SimpleShapes", true),

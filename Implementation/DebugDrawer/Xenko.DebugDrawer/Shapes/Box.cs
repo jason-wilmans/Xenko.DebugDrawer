@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using SiliconStudio.Core.Mathematics;
-using SiliconStudio.Xenko.Engine;
+using System.Collections.Generic;
+using Xenko.Core.Mathematics;
+using Xenko.Engine;
 
 namespace Xenko.DebugDrawer.Shapes
 {

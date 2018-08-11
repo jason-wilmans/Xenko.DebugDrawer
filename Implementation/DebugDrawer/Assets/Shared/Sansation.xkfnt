@@ -1,0 +1,7 @@
+!SpriteFont
+Id: bd802da0-f323-40a6-acb0-ff74c1f323ae
+SerializedVersion: {Xenko: 2.0.0.0}
+Tags: []
+FontSource: !FileFontProvider
+    Source: ../../../../Assets/sansation/Sansation_Light.ttf
+FontType: !RuntimeRasterizedSpriteFontType {}

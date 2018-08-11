@@ -118,7 +118,7 @@ UsedParameters:
                 -   ClassName: LightDirectionalGroup
                     GenericArguments: [1]
                 -   ClassName: ShadowMapReceiverDirectional
-                    GenericArguments: [4, 1, true, true, false]
+                    GenericArguments: [4, 1, true, true, false, false]
                 -   ClassName: ShadowMapFilterPcf
                     GenericArguments: [PerView.Lighting, 5]
         - !ShaderClassSource
@@ -200,7 +200,7 @@ UsedParameters:
                 -   ClassName: LightDirectionalGroup
                     GenericArguments: [1]
                 -   ClassName: ShadowMapReceiverDirectional
-                    GenericArguments: [4, 1, true, true, false]
+                    GenericArguments: [4, 1, true, true, false, false]
                 -   ClassName: ShadowMapFilterPcf
                     GenericArguments: [PerView.Lighting, 5]
         - !ShaderClassSource
@@ -221,13 +221,13 @@ UsedParameters:
         ClassName: RoughnessCubeMapEnvironmentColor
     XenkoEffectBase.RenderTargetExtensions: !ShaderMixinSource
         Macros:
-            -   Name: SILICON_STUDIO_RENDER_TARGET_COUNT
+            -   Name: XENKO_RENDER_TARGET_COUNT
                 Definition: 1
-            -   Name: SILICON_STUDIO_MULTISAMPLE_COUNT
+            -   Name: XENKO_MULTISAMPLE_COUNT
                 Definition: 1
 ---
 !EffectCompileRequest
-EffectName: SkyboxShader
+EffectName: SkyboxShaderCubemap
 UsedParameters: {}
 ---
 !EffectCompileRequest
@@ -377,7 +377,7 @@ UsedParameters:
                 -   ClassName: LightDirectionalGroup
                     GenericArguments: [1]
                 -   ClassName: ShadowMapReceiverDirectional
-                    GenericArguments: [4, 1, true, true, false]
+                    GenericArguments: [4, 1, true, true, false, false]
                 -   ClassName: ShadowMapFilterPcf
                     GenericArguments: [PerView.Lighting, 5]
         - !ShaderClassSource
@@ -432,7 +432,7 @@ UsedParameters:
                 -   ClassName: LightDirectionalGroup
                     GenericArguments: [1]
                 -   ClassName: ShadowMapReceiverDirectional
-                    GenericArguments: [4, 1, true, true, false]
+                    GenericArguments: [4, 1, true, true, false, false]
                 -   ClassName: ShadowMapFilterPcf
                     GenericArguments: [PerView.Lighting, 5]
         - !ShaderClassSource
@@ -453,9 +453,9 @@ UsedParameters:
         ClassName: RoughnessCubeMapEnvironmentColor
     XenkoEffectBase.RenderTargetExtensions: !ShaderMixinSource
         Macros:
-            -   Name: SILICON_STUDIO_RENDER_TARGET_COUNT
+            -   Name: XENKO_RENDER_TARGET_COUNT
                 Definition: 1
-            -   Name: SILICON_STUDIO_MULTISAMPLE_COUNT
+            -   Name: XENKO_MULTISAMPLE_COUNT
                 Definition: 1
 ---
 !EffectCompileRequest
@@ -492,9 +492,9 @@ UsedParameters:
             -   ClassName: MaterialPixelShadingStream
     XenkoEffectBase.RenderTargetExtensions: !ShaderMixinSource
         Macros:
-            -   Name: SILICON_STUDIO_RENDER_TARGET_COUNT
+            -   Name: XENKO_RENDER_TARGET_COUNT
                 Definition: 1
-            -   Name: SILICON_STUDIO_MULTISAMPLE_COUNT
+            -   Name: XENKO_MULTISAMPLE_COUNT
                 Definition: 1
 ---
 !EffectCompileRequest
@@ -582,9 +582,9 @@ UsedParameters:
         ClassName: RoughnessCubeMapEnvironmentColor
     XenkoEffectBase.RenderTargetExtensions: !ShaderMixinSource
         Macros:
-            -   Name: SILICON_STUDIO_RENDER_TARGET_COUNT
+            -   Name: XENKO_RENDER_TARGET_COUNT
                 Definition: 1
-            -   Name: SILICON_STUDIO_MULTISAMPLE_COUNT
+            -   Name: XENKO_MULTISAMPLE_COUNT
                 Definition: 1
 ---
 !EffectCompileRequest

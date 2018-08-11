@@ -1,8 +1,8 @@
-﻿using SiliconStudio.Core.Mathematics;
-using SiliconStudio.Xenko.Graphics;
-using SiliconStudio.Xenko.Rendering;
-using SiliconStudio.Xenko.Rendering.Materials;
-using SiliconStudio.Xenko.Rendering.Materials.ComputeColors;
+using Xenko.Core.Mathematics;
+using Xenko.Graphics;
+using Xenko.Rendering;
+using Xenko.Rendering.Materials;
+using Xenko.Rendering.Materials.ComputeColors;
 
 namespace Xenko.DebugDrawer
 {

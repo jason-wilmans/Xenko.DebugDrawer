@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using SiliconStudio.Core.Mathematics;
+using System.Collections.Generic;
+using Xenko.Core.Mathematics;
 
 namespace Xenko.DebugDrawer.Shapes
 {

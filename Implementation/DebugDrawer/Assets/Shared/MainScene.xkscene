@@ -25,8 +25,8 @@ Hierarchy:
                         Page: 1b61a8c2-d8d5-4149-afac-c2778ca9ca7c:Examples/SceneMenuPage
                         Resolution: {X: 1280.0, Y: 720.0, Z: 1000.0}
                         Size: {X: 1.0, Y: 1.0, Z: 1.0}
-                    d07e269aed411d862aa6844744bb21cd: !DebugDrawer.SceneSelectorComponent,DebugDrawer.Game
-                        Id: 9416e518-e9f0-4150-a066-8c9092690879
+                    3f329913cc9c005b5777e0535e26b103: !DebugDrawer.SceneSelectorComponent,DebugDrawer.Game
+                        Id: 731d5293-ce8a-4576-8185-61ac64fa05b2
         -   Entity:
                 Id: 43805b1f-2943-4a5b-bc82-2ea72f4ed064
                 Name: Camera
@@ -69,4 +69,5 @@ Hierarchy:
                                 Size: Large
                                 DepthRange: {}
                                 PartitionMode: !LightDirectionalShadowMap.PartitionLogarithmic {}
+                                ComputeTransmittance: false
                                 BiasParameters: {}
